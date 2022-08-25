@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/05 14:42:47 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/08/25 19:04:50 by jaberkro      ########   odam.nl         */
+/*   Updated: 2022/08/25 19:27:53 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     if (argc == 1)
     {
         std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-        return 1;
+        return 0;
     }
     for (int i = 1; i < argc; i++)
     {
