@@ -6,7 +6,7 @@
 #    By: jaberkro <jaberkro@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/08/25 19:58:38 by jaberkro      #+#    #+#                  #
-#    Updated: 2022/08/25 20:36:53 by jaberkro      ########   odam.nl          #
+#    Updated: 2022/10/31 16:31:21 by jaberkro      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = zombie
 all: $(NAME)
 
 $(NAME): $(SRC)
-	c++ $(FLAGS) -I$(INC) $(SRC) -o $(NAME)
+	c++ $(FLAGS) -I $(INC) $(SRC) -o $(NAME)
 	
 clean:
 

@@ -6,12 +6,12 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/25 19:59:58 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/08/25 20:28:12 by jaberkro      ########   odam.nl         */
+/*   Updated: 2022/09/05 17:22:05 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_CPP
-# define ZOMBIE_CPP
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 # include <iostream>
 # include <cctype>
 

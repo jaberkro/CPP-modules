@@ -6,22 +6,21 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/25 19:59:55 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/08/26 12:21:05 by jaberkro      ########   odam.nl         */
+/*   Updated: 2022/10/31 16:35:20 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cctype>
 #include "Zombie.hpp"
 
 Zombie::Zombie(void) : _name("Jacob")
 {
-    std::cout << "Zombie: Default constructor called\n";
+    std::cout << "Zombie: Default constructor called on " << this->_name << std::endl;
 }
 
 Zombie::Zombie(std::string name) : _name(name)
 {
-    std::cout << "Zombie: Default constructor called\n";
+    std::cout << "Zombie: Default constructor called on " << this->_name << std::endl;
 }
 
 Zombie::~Zombie(void)
@@ -31,5 +30,5 @@ Zombie::~Zombie(void)
 
 void Zombie::announce(void)
 {
-    std::cout << this->_name << ": BraiiiiiiinnnzzzZ...\n";
+    std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
