@@ -6,14 +6,12 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/05 16:05:00 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/10/13 18:12:52 by jaberkro      ########   odam.nl         */
+/*   Updated: 2022/10/31 16:51:16 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
-# include <iostream>
-# include <cctype>
 
 class Contact
 {

@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/06 15:40:42 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/10/13 18:22:15 by jaberkro      ########   odam.nl         */
+/*   Updated: 2022/10/31 16:57:49 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,17 @@ int	main(void)
 	std::cout << "\nFind your F•R•I•E•N•D•S over here:\n";
 	std::cout << "Type ADD, SEARCH or EXIT to add a new contact, search for a contact or exit the program" << std::endl;
 	getline(std::cin, input);
-	while (input.compare("EXIT") != 0)
+	while (42)
 	{
-		if (input.compare("ADD") == 0)// not specific enough, will also happen with "EXIT HI" as input
+		if (input.compare("EXIT") == 0 || std::cin.fail())
+			break ;
+		if (input.compare("ADD") == 0)
 		{
 			book.addContact(contactNum % 8);
 			std::cout << "Added " << book.getContactName(contactNum % 8) << " to F•R•I•E•N•D•S" << std::endl;
 			contactNum++;
 		}
-		else if (input.compare("SEARCH") == 0)// not specific enough, will also happen with "SEARCHES" as input
+		else if (input.compare("SEARCH") == 0)
 		{
 			std::cout << "F•R•I•E•N•D•S:" << std::endl;
 			book.displayContacts();
