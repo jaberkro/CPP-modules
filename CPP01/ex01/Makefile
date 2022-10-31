@@ -6,7 +6,7 @@
 #    By: jaberkro <jaberkro@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/08/25 19:58:38 by jaberkro      #+#    #+#                  #
-#    Updated: 2022/08/26 15:40:56 by jaberkro      ########   odam.nl          #
+#    Updated: 2022/10/31 17:09:39 by jaberkro      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = zombieHorde
 all: $(NAME)
 
 $(NAME): $(SRC)
-	c++ $(FLAGS) -I$(INC) $(SRC) -o $(NAME)
+	c++ $(FLAGS) -I $(INC) $(SRC) -o $(NAME)
 	
 clean:
 

@@ -6,13 +6,12 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/25 20:00:02 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/08/25 20:37:53 by jaberkro      ########   odam.nl         */
+/*   Updated: 2022/10/31 17:07:57 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
 #include "Zombie.hpp"
+#include <iostream>
 
 void randomChump( std::string name )
 {

@@ -6,13 +6,12 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/25 19:59:48 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/08/26 15:40:33 by jaberkro      ########   odam.nl         */
+/*   Updated: 2022/10/31 17:09:01 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
 #include "Zombie.hpp"
+#include <iostream>
 
 int main(void)
 {
@@ -31,6 +30,5 @@ int main(void)
         groupies[i].announce();
     delete[] (groupies);
     delete (edward);
-    // system("leaks zombie");
     return (0);
 }

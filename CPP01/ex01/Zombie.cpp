@@ -6,13 +6,13 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/25 19:59:55 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/08/26 15:35:37 by jaberkro      ########   odam.nl         */
+/*   Updated: 2022/10/31 17:07:49 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
 #include "Zombie.hpp"
+#include <iostream>
+// #include <cctype>
 
 Zombie::Zombie(void) : _name("Jacob")
 {
