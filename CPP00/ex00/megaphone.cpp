@@ -6,12 +6,11 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/05 14:42:47 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/10/13 14:27:44 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/03 14:46:31 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cctype>
 
 std::string	str_toupper(std::string str)
 {
