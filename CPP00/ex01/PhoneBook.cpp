@@ -6,12 +6,10 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/05 16:04:56 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/10/13 18:14:00 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/03 15:46:05 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void)
@@ -66,9 +64,9 @@ std::string PhoneBook::getContactSecret(int i) const
 
 static void	truncateInput(std::string to_print)
 {
-	int	len;
+	unsigned long	len;
 
-	len = to_print.length();
+	len = to_print.size();
 	while (len < 10)
 	{
 		std::cout << " ";
@@ -105,17 +103,17 @@ void PhoneBook::displayContacts(void)
 	{
 		printAllInfo(getContactName(i), getContactSurname(i), getContactNickname(i), i);
 	}
-	std::cout << "|__________|__________|__________|__________|" << std::endl << std::endl;
+	std::cout << "|__________|__________|__________|__________|\n" << std::endl;
 }
 
 void PhoneBook::displayContact(int index)
 {
-	std::cout << ".__________. " << std::endl;
-	std::cout << "|          | " << std::endl;
-	std::cout << "| NAME     | " << getContactName(index) << std::endl;
-	std::cout << "| SURNAME  | " << getContactSurname(index)<< std::endl;
-	std::cout << "| NICKNAME | " << getContactNickname(index)<< std::endl;
-	std::cout << "| NUMBER   | " << getContactNumber(index)<< std::endl;
-	std::cout << "| SECRET   | " << getContactSecret(index)<< std::endl;
-	std::cout << "|__________| " << std::endl;
+	std::cout << ".__________." << std::endl;
+	std::cout << "|          |" << std::endl;
+	std::cout << "|      NAME| " << getContactName(index) << std::endl;
+	std::cout << "|   SURNAME| " << getContactSurname(index)<< std::endl;
+	std::cout << "|  NICKNAME| " << getContactNickname(index)<< std::endl;
+	std::cout << "|    NUMBER| " << getContactNumber(index)<< std::endl;
+	std::cout << "|    SECRET| " << getContactSecret(index)<< std::endl;
+	std::cout << "|__________|\n" << std::endl;
 }

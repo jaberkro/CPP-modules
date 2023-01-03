@@ -6,14 +6,11 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/05 16:05:03 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/10/13 18:16:56 by jaberkro      ########   odam.nl         */
+/*   Updated: 2022/11/02 12:50:28 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
 #include "Contact.hpp"
-#include <string>
 
 Contact::Contact(void)
 {
