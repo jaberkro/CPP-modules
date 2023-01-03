@@ -6,13 +6,13 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/06 15:40:42 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/03 15:23:45 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/03 15:48:15 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <stdlib.h>
 #include "PhoneBook.hpp"
+#include <iostream>
+#include <string>
 
 int	getNumberInput(void)
 {
