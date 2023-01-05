@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/25 19:59:58 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/09/05 17:22:05 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/05 16:21:55 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Zombie
         Zombie(std::string name);
         ~Zombie();
         
-        void announce(void);
+        void announce( void );
 
     private:
         std::string  _name;
