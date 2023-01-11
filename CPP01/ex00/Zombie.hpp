@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/25 19:59:58 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/11 13:14:57 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/11 13:17:23 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class Zombie
 {
     public:
         Zombie();
-        Zombie(std::string name);
+        Zombie( std::string name );
         ~Zombie();
         
         void announce( void );
