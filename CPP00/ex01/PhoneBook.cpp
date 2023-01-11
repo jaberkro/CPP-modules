@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/05 16:04:56 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/03 15:46:05 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/11 19:26:34 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	truncateInput(std::string to_print)
 		std::cout << " ";
 		len++;
 	}
-	for (int i = 0; i < 9; i++)
+	for (unsigned long i = 0; i < 9 && i < to_print.size(); i++)
 	{
 		std::cout << to_print[i];
 	}
