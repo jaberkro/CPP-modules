@@ -6,13 +6,29 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 20:50:59 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/11 22:07:52 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/11 22:19:55 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include <fstream>
+
+bool	infileOpen(std::ifstream	*file)
+{
+	if (file->is_open())
+		return (1);
+	std::cout << "Error: unable to open input file" << std::endl;
+	return (0);
+}
+
+bool	outfileOpen(std::ofstream	*file)
+{
+	if (file->is_open())
+		return (1);
+	std::cout << "Error: unable to open output file" << std::endl;
+	return (0);
+}
 
 std::string	replaceLine(std::string line, std::string s1, std::string s2)
 {
@@ -49,16 +65,12 @@ void	openFilesCopyLines(std::string filename, std::string s1, std::string s2)
 	if (filename.size() == 0 || s1.size() == 0 || s2.size() == 0)
 		std::cout << "Error: empty argument" << std::endl;
 	originalFile.open(filename);
-	if (!originalFile.is_open())
-	{
-		std::cout << filename << ": Unable to open input file" << std::endl;
+	if (!infileOpen(&originalFile))
 		return ;
-	}
 	newFile.open(filename.append(".replace"));
-	if (!newFile.is_open())
+	if (!outfileOpen(&newFile))
 	{
 		originalFile.close();
-		std::cout << filename << ": Unable to open output file" << std::endl;
 		return ;
 	}
 	while (getline(originalFile, line))
