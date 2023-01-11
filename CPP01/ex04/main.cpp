@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 20:50:59 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/11 22:02:22 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/11 22:07:52 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ std::string	replaceLine(std::string line, std::string s1, std::string s2)
 	return (newLine);
 }
 
-void	copyLines(std::string filename, std::string s1, std::string s2)
+void	openFilesCopyLines(std::string filename, std::string s1, std::string s2)
 {
 	std::ifstream	originalFile;
 	std::ofstream	newFile;
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		copyLines(argv[1], argv[2], argv[3]);
+		openFilesCopyLines(argv[1], argv[2], argv[3]);
 	}
 	return (0);
 }
