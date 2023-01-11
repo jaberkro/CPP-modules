@@ -6,11 +6,11 @@
 #    By: jaberkro <jaberkro@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/08/25 19:58:38 by jaberkro      #+#    #+#                  #
-#    Updated: 2023/01/11 15:03:56 by jaberkro      ########   odam.nl          #
+#    Updated: 2023/01/11 15:06:32 by jaberkro      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror -pedantic -std=c++98
+FLAGS = -Wall -Wextra -Werror -pedantic -std=c++98 -fsanitize=address
 SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 INC = Zombie.hpp
 NAME = zombie
