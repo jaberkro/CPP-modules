@@ -6,14 +6,13 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/25 19:59:58 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/05 16:21:55 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/11 13:14:57 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
 # include <iostream>
-# include <cctype>
 
 class Zombie
 {
