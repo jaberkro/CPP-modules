@@ -6,29 +6,13 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 20:50:59 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/11 22:19:55 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/12 11:10:53 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include <fstream>
-
-bool	infileOpen(std::ifstream	*file)
-{
-	if (file->is_open())
-		return (1);
-	std::cout << "Error: unable to open input file" << std::endl;
-	return (0);
-}
-
-bool	outfileOpen(std::ofstream	*file)
-{
-	if (file->is_open())
-		return (1);
-	std::cout << "Error: unable to open output file" << std::endl;
-	return (0);
-}
 
 std::string	replaceLine(std::string line, std::string s1, std::string s2)
 {
@@ -45,7 +29,7 @@ std::string	replaceLine(std::string line, std::string s1, std::string s2)
 		}
 		else
 		{
-			newLine.append(line.substr(start, end));
+			newLine.append(line.substr(start, end - start));
 			newLine.append(s2);
 			start = end + s1.size();
 			if (start >= line.size() - 1)
@@ -54,6 +38,22 @@ std::string	replaceLine(std::string line, std::string s1, std::string s2)
 	}
 	newLine.append(line.substr(start, end));
 	return (newLine);
+}
+
+bool	infileOpen(std::ifstream	*file)
+{
+	if (file->is_open())
+		return (1);
+	std::cout << "Error: unable to open input file" << std::endl;
+	return (0);
+}
+
+bool	outfileOpen(std::ofstream	*file)
+{
+	if (file->is_open())
+		return (1);
+	std::cout << "Error: unable to open output file" << std::endl;
+	return (0);
 }
 
 void	openFilesCopyLines(std::string filename, std::string s1, std::string s2)
