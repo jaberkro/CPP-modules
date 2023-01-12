@@ -1,0 +1,28 @@
+//Some tests to execute: 
+
+./sed Makefile SRC DST
+//change of the same length
+
+./sed Makefile "*" o
+//changes all occurrences of * to o, visible in header
+
+./sed Makefile e +++
+//small word changes into bigger word
+
+./sed Makefile FLAGS F
+//long word changes into smaller word
+
+
+
+./sed Makefile "" DST
+//Error: empty argument
+
+./sed "" Makefile DST
+//Error: empty argument
+
+./sed Makefile SRC ""
+//Error: empty argument
+
+./sed Makefil e +++
+//Error: unable to open input file 
+

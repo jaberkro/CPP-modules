@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 20:50:59 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/12 11:10:53 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/12 11:55:47 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void	openFilesCopyLines(std::string filename, std::string s1, std::string s2)
 	std::string		line;
 
 	if (filename.size() == 0 || s1.size() == 0 || s2.size() == 0)
+	{
 		std::cout << "Error: empty argument" << std::endl;
+		return ;
+	}
 	originalFile.open(filename);
 	if (!infileOpen(&originalFile))
 		return ;
