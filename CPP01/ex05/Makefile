@@ -6,13 +6,13 @@
 #    By: jaberkro <jaberkro@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/11 20:51:25 by jaberkro      #+#    #+#                  #
-#    Updated: 2023/01/12 12:02:02 by jaberkro      ########   odam.nl          #
+#    Updated: 2023/01/12 12:02:00 by jaberkro      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
-SRC = main.cpp
-NAME = sed
+SRC = main.cpp Harl.cpp
+NAME = harl
 
 all: $(NAME)
 

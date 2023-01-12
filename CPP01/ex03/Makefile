@@ -6,11 +6,11 @@
 #    By: jaberkro <jaberkro@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/08/26 17:37:49 by jaberkro      #+#    #+#                  #
-#    Updated: 2023/01/11 16:40:00 by jaberkro      ########   odam.nl          #
+#    Updated: 2023/01/12 12:02:01 by jaberkro      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
 SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 NAME = weapon
 
