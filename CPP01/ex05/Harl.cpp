@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/13 12:52:41 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/13 16:25:24 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/18 12:13:22 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,21 @@ void	Harl::complain(std::string level)
 {
 	void	(Harl::*pmf)(void) = NULL;
 
-	if (level.compare("debug") == 0 || level.compare("info") == 0 || \
-		level.compare("warning") == 0 || level.compare("error") == 0)
+	if (level.compare("DEBUG") == 0 || level.compare("INFO") == 0 || \
+		level.compare("WARNING") == 0 || level.compare("ERROR") == 0)
 	{
 		switch(level.at(0))
 		{
-			case 'd':
+			case 'D':
 				pmf = &Harl::debug;
 				break ;
-			case 'i':
+			case 'I':
 				pmf = &Harl::info;
 				break ;
-			case 'w':
+			case 'W':
 				pmf = &Harl::warning;
 				break ;
-			case 'e':
+			case 'E':
 				pmf = &Harl::error;
 				break ;
 		}

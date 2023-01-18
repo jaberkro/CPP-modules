@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/13 12:52:31 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/13 16:24:57 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/18 12:12:45 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@
 int main(void)
 {
 	Harl H;
-	std::string level = "debug";
+	std::string level = "DEBUG";
 
 	std::cout << "\nHERE WILL BE THE 4 DIFFERENT COMPLAIN LEVELS:" << std::endl;
 	H.complain(level);
-	level = "info";
+	level = "INFO";
 	H.complain(level);
-	level = "warning";
+	level = "WARNING";
 	H.complain(level);
-	level = "error";
+	level = "ERROR";
 	H.complain(level);
 
 	std::cout << "\nHERE WILL BE SOME ERRORS:" << std::endl;
-	level = "wrong";
+	level = "WRONG";
 	H.complain(level);
 	level = "Debug";
 	H.complain(level);
-	level = "DEBUG";
+	level = "debug";
 	H.complain(level);
 	level = "";
 	H.complain(level);
