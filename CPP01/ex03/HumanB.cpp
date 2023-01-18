@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/26 17:39:59 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/11 19:30:35 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/18 12:15:16 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	HumanB::setWeapon(Weapon &weapon)
 	std::cout << this->_name << " sets weapon";
 	if (this->_weapon)
 		std::cout << " from " << this->_weapon->getType();
-	else
 	this->_weapon = &weapon;
 	std::cout << " to " << this->_weapon->getType() << std::endl;
 }
