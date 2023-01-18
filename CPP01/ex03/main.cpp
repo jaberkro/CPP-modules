@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/26 17:37:57 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/11 18:08:11 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/18 12:16:15 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,25 @@ int main(void)
 	{
 	Weapon club = Weapon("crude spiked club");
 	HumanA bob("Bob", club);
+	std::cout << std::endl;
 	bob.attack();
 	club.setType("some other type of club");
 	bob.attack();
+	std::cout << std::endl;
 	}
 	{
 	Weapon club = Weapon("crude spiked club");
+	Weapon sword = Weapon("excalibur");
 	HumanB jim("Jim");
+	std::cout << std::endl;
+	jim.attack();
+	jim.setWeapon(sword);
 	jim.attack();
 	jim.setWeapon(club);
 	jim.attack();
 	club.setType("some other type of club");
 	jim.attack();
+	std::cout << std::endl;
 	}
 	return 0;
 }
-// {
-// 	Weapon club;
-// 	Weapon spike("superspike");
-// 	HumanA bob("Bob", club);
-	
-// 	std::cout << club.Weapon::getType() << std::endl;
-// 	club.Weapon::setType("wooden club");
-// 	std::cout << club.Weapon::getType() << std::endl;
-
-// 	std::cout << spike.Weapon::getType() << std::endl;
-
-// }
-// {
