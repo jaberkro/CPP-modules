@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:19:57 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/18 16:01:23 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/01/19 15:39:52 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ class Fixed
 		Fixed & operator = (const Fixed &fixed);
 		~Fixed();
 
-		int getRawBits(void) const;
-		void setRawBits(int const raw);
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
 
 	private:
-		int	_value;
-		static const int _bits = 8;
+		int					_value;
+		static const int	_bits = 8;
 };
 
 #endif
