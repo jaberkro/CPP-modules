@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:20:00 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/19 18:21:33 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/09 18:48:24 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,41 +117,84 @@ bool Fixed::operator!=(const Fixed &toCheck)
 	return (0);
 }
 
-Fixed&	Fixed::operator+(const Fixed &toAdd)
+Fixed	Fixed::operator+(const Fixed &toAdd)
 {
-	this->_value += toAdd._value;
+	Fixed result;
+	result._value = this->_value + toAdd._value;
+	return (result);
+}
+
+Fixed	Fixed::operator-(const Fixed &toSubstract)
+{
+	Fixed result;
+	result._value = this->_value - toSubstract._value;
+	return (result);
+}
+
+Fixed	Fixed::operator*(const Fixed &toMultiply)
+{
+	Fixed result;
+	result._value = roundf(this->toFloat() * toMultiply.toFloat() * pow(2, 8));
+	return (result);
+}
+
+Fixed	Fixed::operator/(const Fixed &toDivide)
+{
+	Fixed result;
+	result._value = roundf(this->toFloat() / toDivide.toFloat() * pow(2, 8));
+	return (result);
+}
+
+Fixed	Fixed::operator++(void)
+{
+	++this->_value;
 	return (*this);
 }
 
-Fixed&	Fixed::operator-(const Fixed &toDistract)
+Fixed	Fixed::operator++(int) //waarom alleen int?
 {
-	this->_value -= toDistract._value;
+	Fixed temp = *this;
+	++this->_value;
+	return (temp);
+}
+
+Fixed	Fixed::operator--(void)
+{
+	--this->_value;
 	return (*this);
 }
 
-Fixed&	Fixed::operator*(const Fixed &toMultiply)
+Fixed	Fixed::operator--(int) // waarom alleen int?
 {
-	this->_value *= toMultiply._value;
-	return (*this);
+	Fixed temp = *this;
+	--this->_value;
+	return (temp);
 }
 
-Fixed&	Fixed::operator/(const Fixed &toDivide)
+Fixed&	min(Fixed &a, Fixed &b)
 {
-	this->_value -= toDivide._value;
-	return (*this);
+	if (a.toFloat() <= b.toFloat())
+		return (a);
+	return (b);
 }
 
-// Fixed&	Fixed::operator++(void)
-// {
-// 	this->_value += 1;
-// 	return (*this);
-// }
+const Fixed&	min(const Fixed &a, const Fixed &b)
+{
+	if (a.toFloat() <= b.toFloat())
+		return (a);
+	return (b);
+}
 
-// Fixed	Fixed::operator++(int previous)
-// {
-// 	previous = this->_value;
-// 	this->_value = this->_value  + 1;
-// 	return (previous);
-// }
+Fixed&	max(Fixed &a, Fixed &b)
+{
+	if (a.toFloat() >= b.toFloat())
+		return (a);
+	return (b);
+}
 
-
+const Fixed&	max(const Fixed &a, const Fixed &b)
+{
+	if (a.toFloat() >= b.toFloat())
+		return (a);
+	return (b);
+}

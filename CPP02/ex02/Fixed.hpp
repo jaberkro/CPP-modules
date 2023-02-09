@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:19:57 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/19 18:21:42 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/09 18:47:39 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Fixed
 		Fixed(const int input);
 		Fixed(const float input);
 		Fixed(const Fixed &fixed);
-		Fixed & operator=(const Fixed &fixed);
+		Fixed& operator=(const Fixed &fixed);
 		~Fixed();
 
 		int		getRawBits(void) const;
@@ -36,19 +36,26 @@ class Fixed
 		bool	operator==(const Fixed &toCheck);
 		bool	operator!=(const Fixed &toCheck);
 		
-		Fixed&	operator+(const Fixed &toAdd);
-		Fixed&	operator-(const Fixed &toDistract);
-		Fixed&	operator*(const Fixed &toMultiply);
-		Fixed&	operator/(const Fixed &toDivide);
+		Fixed	operator+(const Fixed &toAdd);
+		Fixed	operator-(const Fixed &toSubstract);
+		Fixed	operator*(const Fixed &toMultiply);
+		Fixed	operator/(const Fixed &toDivide);
 
-		// Fixed&	operator++(void);
-		// Fixed	operator++(int i);
+		Fixed	operator++(void);
+		Fixed	operator--(void);
+		Fixed	operator++(int);
+		Fixed	operator--(int);
 
 	private:
 		int					_value;
 		static const int 	_bits = 8;
 };
 
-std::ostream& operator<<(std::ostream&out, const Fixed &toPrint);
+std::ostream& 	operator<<(std::ostream&out, const Fixed &toPrint);
+
+Fixed&			min(Fixed &a, Fixed &b);
+Fixed&			max(Fixed &a, Fixed &b);
+const Fixed&	min(const Fixed &a, const Fixed &b);
+const Fixed&	max(const Fixed &a, const Fixed &b);
 
 #endif
