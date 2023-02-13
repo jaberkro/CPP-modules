@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/26 17:40:09 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/11 17:56:20 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 16:22:19 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ HumanA::HumanA(std::string name, Weapon &weapon) : _name(name), _weapon(weapon)
 
 HumanA::~HumanA(void)
 {
-    std::cout << "HumanA: Default destructor called on " << this->_name << std::endl;
+    std::cout << "HumanA: Destructor called on " << this->_name << std::endl;
 }
 
 void	HumanA::attack(void)

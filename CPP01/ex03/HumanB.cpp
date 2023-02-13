@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/26 17:39:59 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/18 12:15:16 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 16:22:27 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ HumanB::HumanB(std::string name) : _name(name), _weapon(NULL)
 
 HumanB::~HumanB(void)
 {
-    std::cout << "HumanB: Default destructor called on " << this->_name << std::endl;
+    std::cout << "HumanB: Destructor called on " << this->_name << std::endl;
 }
 
 void	HumanB::attack(void)
