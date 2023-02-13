@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:19:57 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/09 18:47:39 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 15:52:46 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ class Fixed
 		float	toFloat(void) const;
 		int		toInt(void) const;
 		
-		bool	operator>(const Fixed &toCheck);
-		bool	operator<(const Fixed &toCheck);
-		bool	operator>=(const Fixed &toCheck);
-		bool	operator<=(const Fixed &toCheck);
-		bool	operator==(const Fixed &toCheck);
-		bool	operator!=(const Fixed &toCheck);
+		bool	operator>(const Fixed &toCheck) const;
+		bool	operator<(const Fixed &toCheck) const;
+		bool	operator>=(const Fixed &toCheck) const;
+		bool	operator<=(const Fixed &toCheck) const;
+		bool	operator==(const Fixed &toCheck) const;
+		bool	operator!=(const Fixed &toCheck) const;
 		
-		Fixed	operator+(const Fixed &toAdd);
-		Fixed	operator-(const Fixed &toSubstract);
-		Fixed	operator*(const Fixed &toMultiply);
-		Fixed	operator/(const Fixed &toDivide);
+		Fixed	operator+(const Fixed &toAdd) const;
+		Fixed	operator-(const Fixed &toSubstract) const;
+		Fixed	operator*(const Fixed &toMultiply) const;
+		Fixed	operator/(const Fixed &toDivide) const;
 
-		Fixed	operator++(void);
-		Fixed	operator--(void);
+		Fixed&	operator++(void);
+		Fixed&	operator--(void);
 		Fixed	operator++(int);
 		Fixed	operator--(int);
 
@@ -54,8 +54,8 @@ class Fixed
 std::ostream& 	operator<<(std::ostream&out, const Fixed &toPrint);
 
 Fixed&			min(Fixed &a, Fixed &b);
-Fixed&			max(Fixed &a, Fixed &b);
 const Fixed&	min(const Fixed &a, const Fixed &b);
+Fixed&			max(Fixed &a, Fixed &b);
 const Fixed&	max(const Fixed &a, const Fixed &b);
 
 #endif

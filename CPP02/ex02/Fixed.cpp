@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:20:00 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/09 18:48:24 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 16:06:40 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #include <iostream>
 #include <cmath>
 
-Fixed::Fixed(void) : _value(0)
+Fixed::Fixed(void): _value(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int input) : _value(input << this->_bits)
+Fixed::Fixed(const int input): _value(input << this->_bits)
 {
 	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float input) : _value(roundf(input * pow(2, 8)))
+Fixed::Fixed(const float input): _value(roundf(input * pow(2, this->_bits)))
 {
 	std::cout << "Float constructor called" << std::endl;
 }
@@ -35,7 +35,7 @@ Fixed::Fixed(const Fixed &fixed)
 	*this = fixed;
 }
 
-Fixed & Fixed::operator = (const Fixed &fixed)
+Fixed& Fixed::operator=(const Fixed &fixed)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->_value = fixed.getRawBits();
@@ -61,7 +61,7 @@ void Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return (this->_value / (pow(2, 8)));
+	return (this->_value / (pow(2, this->_bits)));
 }
 
 int		Fixed::toInt(void) const
@@ -75,96 +75,96 @@ std::ostream& operator<<(std::ostream& out, const Fixed &toPrint)
 	return (out);
 }
 
-bool Fixed::operator>(const Fixed &toCheck)
+bool Fixed::operator>(const Fixed &toCheck) const
 {
 	if (this->_value > toCheck._value)
 		return (1);
 	return (0);
 }
 
-bool Fixed::operator<(const Fixed &toCheck)
+bool Fixed::operator<(const Fixed &toCheck) const
 {
 	if (this->_value < toCheck._value)
 		return (1);
 	return (0);
 }
 
-bool Fixed::operator>=(const Fixed &toCheck)
+bool Fixed::operator>=(const Fixed &toCheck) const
 {
 	if (this->_value >= toCheck._value)
 		return (1);
 	return (0);
 }
 
-bool Fixed::operator<=(const Fixed &toCheck)
+bool Fixed::operator<=(const Fixed &toCheck) const
 {
 	if (this->_value <= toCheck._value)
 		return (1);
 	return (0);
 }
 
-bool Fixed::operator==(const Fixed &toCheck)
+bool Fixed::operator==(const Fixed &toCheck) const
 {
 	if (this->_value == toCheck._value)
 		return (1);
 	return (0);
 }
 
-bool Fixed::operator!=(const Fixed &toCheck)
+bool Fixed::operator!=(const Fixed &toCheck) const
 {
 	if (this->_value != toCheck._value)
 		return (1);
 	return (0);
 }
 
-Fixed	Fixed::operator+(const Fixed &toAdd)
+Fixed	Fixed::operator+(const Fixed &toAdd) const
 {
 	Fixed result;
 	result._value = this->_value + toAdd._value;
 	return (result);
 }
 
-Fixed	Fixed::operator-(const Fixed &toSubstract)
+Fixed	Fixed::operator-(const Fixed &toSubstract) const
 {
 	Fixed result;
 	result._value = this->_value - toSubstract._value;
 	return (result);
 }
 
-Fixed	Fixed::operator*(const Fixed &toMultiply)
+Fixed	Fixed::operator*(const Fixed &toMultiply) const
 {
 	Fixed result;
 	result._value = roundf(this->toFloat() * toMultiply.toFloat() * pow(2, 8));
 	return (result);
 }
 
-Fixed	Fixed::operator/(const Fixed &toDivide)
+Fixed	Fixed::operator/(const Fixed &toDivide) const
 {
 	Fixed result;
 	result._value = roundf(this->toFloat() / toDivide.toFloat() * pow(2, 8));
 	return (result);
 }
 
-Fixed	Fixed::operator++(void)
+Fixed&	Fixed::operator++(void)
 {
 	++this->_value;
 	return (*this);
 }
 
-Fixed	Fixed::operator++(int) //waarom alleen int?
+Fixed&	Fixed::operator--(void)
+{
+	--this->_value;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int)
 {
 	Fixed temp = *this;
 	++this->_value;
 	return (temp);
 }
 
-Fixed	Fixed::operator--(void)
-{
-	--this->_value;
-	return (*this);
-}
-
-Fixed	Fixed::operator--(int) // waarom alleen int?
+Fixed	Fixed::operator--(int)
 {
 	Fixed temp = *this;
 	--this->_value;
