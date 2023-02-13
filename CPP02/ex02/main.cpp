@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:19:55 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/09 18:58:26 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 16:07:55 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(void)
 	Fixed a;
 	Fixed b(-5);
 	Fixed c(5.3f);
-	Fixed const d( Fixed( 5.05f ) * Fixed( 2 ) );
+	Fixed const d(Fixed(5.05f) * Fixed(2));
 	Fixed const e(8.0f);
 
 	std::cout << "_______\n" << std::endl;
