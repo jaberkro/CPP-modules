@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/25 19:59:55 by jaberkro      #+#    #+#                 */
-/*   Updated: 2022/10/31 17:18:00 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 16:22:05 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ Zombie::Zombie(void) : _name("Jacob")
 
 Zombie::Zombie(std::string name) : _name(name)
 {
-    std::cout << "Zombie: Default constructor called\n";
+    std::cout << "Zombie: Copy constructor called\n";
 }
 
 Zombie::~Zombie(void)
 {
-    std::cout << "Zombie: Default destructor called on " << this->_name << std::endl;
+    std::cout << "Zombie: Destructor called on " << this->_name << std::endl;
 }
 
 void Zombie::announce(void)
