@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   ScavTrap.hpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/09 19:05:38 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/13 16:52:14 by jaberkro      ########   odam.nl         */
+/*   Created: 2023/02/13 11:56:21 by jaberkro      #+#    #+#                 */
+/*   Updated: 2023/02/13 16:47:09 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
-#include "ClapTrap.hpp"
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
+# include "ClapTrap.hpp"
+# include <string>
 
-int	main(void)
+class ScavTrap : public ClapTrap
 {
-	ScavTrap sally("Sally");
-	
-	sally.guardGate();
-	sally.attack("Henry");
-	sally.beRepaired(10);
-	sally.takeDamage(110);
-	sally.beRepaired(10);
-	sally.guardGate();
-	sally.attack("Henry");
-	return (0);
-}
+	public:
+		ScavTrap();
+		ScavTrap(std::string name);
+		ScavTrap& operator=(const ScavTrap &scavtrap);
+		~ScavTrap();
+
+		void	attack(const std::string& target);
+		void	guardGate(void);
+};
+
+#endif
