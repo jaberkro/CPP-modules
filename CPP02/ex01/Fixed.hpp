@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:19:57 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/09 19:12:35 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 16:09:06 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@ class Fixed
 		Fixed(const int input);
 		Fixed(const float input);
 		Fixed(const Fixed &fixed);
-		Fixed& operator = (const Fixed &fixed);
+		Fixed& operator=(const Fixed &fixed);
 		~Fixed();
 
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
 		float	toFloat(void) const;
 		int		toInt(void) const;
-
 
 	private:
 		int					_value;

@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:20:00 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/19 17:32:08 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 16:13:09 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #include <iostream>
 #include <cmath>
 
-Fixed::Fixed(void) : _value(0)
+Fixed::Fixed(void): _value(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int input) : _value(input << this->_bits)
+Fixed::Fixed(const int input): _value(input << this->_bits)
 {
 	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float input) : _value(roundf(input * pow(2, 8)))
+Fixed::Fixed(const float input): _value(roundf(input * pow(2, this->_bits)))
 {
 	std::cout << "Float constructor called" << std::endl;
 }
@@ -35,7 +35,7 @@ Fixed::Fixed(const Fixed &fixed)
 	*this = fixed;
 }
 
-Fixed & Fixed::operator = (const Fixed &fixed)
+Fixed& Fixed::operator=(const Fixed &fixed)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->_value = fixed.getRawBits();
@@ -61,7 +61,7 @@ void Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return (this->_value / (pow(2, 8)));
+	return (this->_value / (pow(2, this->_bits)));
 }
 
 int		Fixed::toInt(void) const
