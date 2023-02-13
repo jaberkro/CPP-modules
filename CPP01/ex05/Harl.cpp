@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/13 12:52:41 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/18 12:13:22 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 16:23:02 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Harl::Harl()
 {
-	std::cout << "Harl constructor called" << std::endl;
+	std::cout << "Harl default constructor called" << std::endl;
 }
 
 Harl::~Harl()
