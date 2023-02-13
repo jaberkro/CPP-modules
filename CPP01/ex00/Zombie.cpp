@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/25 19:59:55 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/13 16:19:09 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 16:21:55 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Zombie::Zombie(std::string name): _name(name)
 
 Zombie::~Zombie(void)
 {
-    std::cout << "Zombie: Default destructor called on " << this->_name << std::endl;
+    std::cout << "Zombie: Destructor called on " << this->_name << std::endl;
 }
 
 void Zombie::announce(void)
