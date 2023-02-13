@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   ScavTrap.hpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/09 19:05:46 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/13 17:46:01 by jaberkro      ########   odam.nl         */
+/*   Created: 2023/02/13 11:56:21 by jaberkro      #+#    #+#                 */
+/*   Updated: 2023/02/13 17:01:39 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
+# include "ClapTrap.hpp"
+# include <string>
 
-int	main(void)
+class ScavTrap: public ClapTrap
 {
-	FragTrap frog("Frog");
+	public:
+		ScavTrap();
+		ScavTrap(std::string name);
+		ScavTrap& operator=(const ScavTrap &scavtrap);
+		~ScavTrap();
 
-	frog.attack("Chicken");
-	frog.beRepaired(100);
-	frog.takeDamage(1000);
-	frog.takeDamage(10);
-	frog.highFivesGuys();
-	return (0);
-}
+		void	attack(const std::string& target);
+		void	guardGate(void);
+};
+
+#endif

@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   FragTrap.hpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/09 19:05:46 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/13 17:46:01 by jaberkro      ########   odam.nl         */
+/*   Created: 2023/02/13 16:53:35 by jaberkro      #+#    #+#                 */
+/*   Updated: 2023/02/13 17:01:32 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
+# include "ClapTrap.hpp"
+# include <string>
 
-int	main(void)
+class FragTrap: public ClapTrap
 {
-	FragTrap frog("Frog");
+	public:
+		FragTrap();
+		FragTrap(std::string name);
+		FragTrap& operator=(const FragTrap &fragtrap);
+		~FragTrap();
 
-	frog.attack("Chicken");
-	frog.beRepaired(100);
-	frog.takeDamage(1000);
-	frog.takeDamage(10);
-	frog.highFivesGuys();
-	return (0);
-}
+		void	highFivesGuys(void);
+};
+
+#endif
