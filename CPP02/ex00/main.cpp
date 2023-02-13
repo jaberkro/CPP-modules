@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:19:55 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/01/18 12:43:10 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/13 12:45:07 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int main(void)
 {
 	Fixed a;
-	Fixed b( a );
+	Fixed b(a);
 	Fixed c;
 	c = b;
 	std::cout << a.getRawBits() << std::endl;
