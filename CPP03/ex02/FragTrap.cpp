@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 16:53:38 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/13 17:00:43 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/15 18:36:19 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,25 @@ FragTrap::FragTrap(void): ClapTrap()
 
 FragTrap::FragTrap(std::string name): ClapTrap(name)
 {
-	std::cout << "Copy constructor called on FragTrap" << std::endl;
+	std::cout << "Parametric constructor called on FragTrap" << std::endl;
 	this->_hitPoints = 100;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
 }
 
-FragTrap& FragTrap::operator=(const FragTrap &Fragtrap)
+FragTrap::FragTrap(const FragTrap &src)
 {
-	std::cout << "Copy assignment operator called on FragTrap" << std::endl;
-	this->_name = Fragtrap._name;
-	this->_hitPoints = Fragtrap._hitPoints;
-	this->_energyPoints = Fragtrap._energyPoints;
-	this->_attackDamage = Fragtrap._attackDamage;
+	std::cout << "Copy constructor called on FragTrap" << std::endl;
+	*this = src;
+}
+
+FragTrap& FragTrap::operator=(const FragTrap &src)
+{
+	std::cout << "Assignment operator called on FragTrap" << std::endl;
+	this->_name = src._name;
+	this->_hitPoints = src._hitPoints;
+	this->_energyPoints = src._energyPoints;
+	this->_attackDamage = src._attackDamage;
 	return (*this);
 }
 

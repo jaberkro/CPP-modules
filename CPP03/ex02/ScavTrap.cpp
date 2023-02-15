@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 11:56:19 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/13 17:01:00 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/15 18:50:38 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,25 @@ ScavTrap::ScavTrap(void): ClapTrap()
 
 ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 {
-	std::cout << "Copy constructor called on ScavTrap" << std::endl;
+	std::cout << "Parametric constructor called on ScavTrap" << std::endl;
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
 }
 
-ScavTrap& ScavTrap::operator=(const ScavTrap &scavtrap)
+ScavTrap::ScavTrap(const ScavTrap &src)
 {
-	std::cout << "Copy assignment operator called on ScavTrap" << std::endl;
-	this->_name = scavtrap._name;
-	this->_hitPoints = scavtrap._hitPoints;
-	this->_energyPoints = scavtrap._energyPoints;
-	this->_attackDamage = scavtrap._attackDamage;
+	std::cout << "Copy constructor called on ScavTrap" << std::endl;
+	*this = src;
+}
+
+ScavTrap& ScavTrap::operator=(const ScavTrap &src)
+{
+	std::cout << "Assignment operator called on ScavTrap" << std::endl;
+	this->_name = src._name;
+	this->_hitPoints = src._hitPoints;
+	this->_energyPoints = src._energyPoints;
+	this->_attackDamage = src._attackDamage;
 	return (*this);
 }
 
@@ -44,7 +50,7 @@ ScavTrap::~ScavTrap(void)
 	std::cout << "Destructor called on ScavTrap" << std::endl;
 }
 
-void	ScavTrap::attack(const std::string& target)
+void	ScavTrap::attack(const std::string &target)
 {
 	if (this->_hitPoints <= 0)
 	{

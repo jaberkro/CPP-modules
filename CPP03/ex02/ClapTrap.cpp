@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/09 19:05:59 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/13 17:49:08 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/15 18:49:57 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@ ClapTrap::ClapTrap(void): _name("Anonymous"), _hitPoints(10), _energyPoints(10),
 
 ClapTrap::ClapTrap(std::string name): _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "Copy constructor called on ClapTrap" << std::endl;
+	std::cout << "Parametric constructor called on ClapTrap" << std::endl;
 }
 
-ClapTrap& ClapTrap::operator=(const ClapTrap &claptrap)
+ClapTrap::ClapTrap(const ClapTrap &src)
 {
-	std::cout << "Copy assignment operator called on ClapTrap" << std::endl;
-	this->_name = claptrap._name;
-	this->_hitPoints = claptrap._hitPoints;
-	this->_energyPoints = claptrap._energyPoints;
-	this->_attackDamage = claptrap._attackDamage;
+	std::cout << "Copy constructor called on ClapTrap" << std::endl;
+	*this = src;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap &src)
+{
+	std::cout << "Assignment operator called on ClapTrap" << std::endl;
+	this->_name = src._name;
+	this->_hitPoints = src._hitPoints;
+	this->_energyPoints = src._energyPoints;
+	this->_attackDamage = src._attackDamage;
 	return (*this);
 }
 
@@ -38,7 +44,7 @@ ClapTrap::~ClapTrap(void)
 	std::cout << "Destructor called on ClapTrap" << std::endl;
 }
 
-void	ClapTrap::attack(const std::string& target)
+void	ClapTrap::attack(const std::string &target)
 {
 	if (this->_hitPoints <= 0)
 	{
