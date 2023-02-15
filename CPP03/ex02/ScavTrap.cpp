@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 11:56:19 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/15 18:50:38 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/15 21:51:54 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ ScavTrap::ScavTrap(const ScavTrap &src)
 
 ScavTrap& ScavTrap::operator=(const ScavTrap &src)
 {
-	std::cout << "Assignment operator called on ScavTrap" << std::endl;
+	std::cout << "Copy assignment operator called on ScavTrap" << std::endl;
 	this->_name = src._name;
 	this->_hitPoints = src._hitPoints;
 	this->_energyPoints = src._energyPoints;

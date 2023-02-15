@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/09 19:05:59 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/15 18:49:57 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/15 21:51:54 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ ClapTrap::ClapTrap(const ClapTrap &src)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &src)
 {
-	std::cout << "Assignment operator called on ClapTrap" << std::endl;
+	std::cout << "Copy assignment operator called on ClapTrap" << std::endl;
 	this->_name = src._name;
 	this->_hitPoints = src._hitPoints;
 	this->_energyPoints = src._energyPoints;

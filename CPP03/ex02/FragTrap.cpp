@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 16:53:38 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/15 18:36:19 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/15 21:51:54 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ FragTrap::FragTrap(const FragTrap &src)
 
 FragTrap& FragTrap::operator=(const FragTrap &src)
 {
-	std::cout << "Assignment operator called on FragTrap" << std::endl;
+	std::cout << "Copy assignment operator called on FragTrap" << std::endl;
 	this->_name = src._name;
 	this->_hitPoints = src._hitPoints;
 	this->_energyPoints = src._energyPoints;
