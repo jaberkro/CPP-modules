@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 11:56:21 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/13 16:47:09 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/15 18:49:51 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 # include "ClapTrap.hpp"
 # include <string>
 
-class ScavTrap : public ClapTrap
+class ScavTrap: public ClapTrap
 {
 	public:
 		ScavTrap();
 		ScavTrap(std::string name);
-		ScavTrap& operator=(const ScavTrap &scavtrap);
+		ScavTrap(const ScavTrap &src);
+		ScavTrap& operator=(const ScavTrap &src);
 		~ScavTrap();
 
-		void	attack(const std::string& target);
+		void	attack(const std::string &target);
 		void	guardGate(void);
 };
 
