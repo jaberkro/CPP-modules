@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:19:57 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/13 15:52:46 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/15 22:16:12 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ class Fixed
 		Fixed	operator++(int);
 		Fixed	operator--(int);
 
+		static Fixed&		min(Fixed &a, Fixed &b);
+		static const Fixed&	min(const Fixed &a, const Fixed &b);
+		static Fixed&		max(Fixed &a, Fixed &b);
+		static const Fixed&	max(const Fixed &a, const Fixed &b);
+
 	private:
 		int					_value;
 		static const int 	_bits = 8;
 };
 
 std::ostream& 	operator<<(std::ostream&out, const Fixed &toPrint);
-
-Fixed&			min(Fixed &a, Fixed &b);
-const Fixed&	min(const Fixed &a, const Fixed &b);
-Fixed&			max(Fixed &a, Fixed &b);
-const Fixed&	max(const Fixed &a, const Fixed &b);
 
 #endif

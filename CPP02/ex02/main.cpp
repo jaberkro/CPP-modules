@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:19:55 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/13 16:07:55 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/15 22:28:46 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(void)
 	Fixed b(-5);
 	Fixed c(5.3f);
 	Fixed const d(Fixed(5.05f) * Fixed(2));
-	Fixed const e(8.0f);
+	Fixed const e(8.125f);
 
 	std::cout << "_______\n" << std::endl;
 	std::cout << "Starting values:\n" << std::endl;
@@ -30,6 +30,16 @@ int main(void)
 	std::cout << "e: " << e << std::endl;
 	std::cout << "_______\n" << std::endl;
 	
+	//COMPARISON
+	std::cout << "Comparison:\n" << std::endl;
+	std::cout << "a > b? " << (a > b) << std::endl;
+	std::cout << "a < b? " << (a < b) << std::endl;
+	std::cout << "a >= b? " << (a >= b) << std::endl;
+	std::cout << "a <= b? " << (a <= b) << std::endl;
+	std::cout << "a == b? " << (a == b) << std::endl;
+	std::cout << "a != b? " << (a != b) << std::endl;
+	std::cout << "_______\n" << std::endl;
+
 	//ADDITION
 	std::cout << "Addition on a:\n" << std::endl;
 	std::cout << a << std::endl;
@@ -205,30 +215,30 @@ int main(void)
 
 	//MIN
 	std::cout << "Min values:\n" << std::endl;
-	std::cout << min( a, b ) << std::endl;
-	std::cout << min( a, c ) << std::endl;
-	std::cout << min( a, d ) << std::endl;
-	std::cout << min( a, e ) << std::endl;
-	std::cout << min( b, c ) << std::endl;
-	std::cout << min( b, d ) << std::endl;
-	std::cout << min( b, e ) << std::endl;
-	std::cout << min( c, d ) << std::endl;
-	std::cout << min( c, e ) << std::endl;
-	std::cout << min( d, e ) << std::endl;
+	std::cout << Fixed::min( a, b ) << std::endl;
+	std::cout << Fixed::min( a, c ) << std::endl;
+	std::cout << Fixed::min( a, d ) << std::endl;
+	std::cout << Fixed::min( a, e ) << std::endl;
+	std::cout << Fixed::min( b, c ) << std::endl;
+	std::cout << Fixed::min( b, d ) << std::endl;
+	std::cout << Fixed::min( b, e ) << std::endl;
+	std::cout << Fixed::min( c, d ) << std::endl;
+	std::cout << Fixed::min( c, e ) << std::endl;
+	std::cout << Fixed::min( d, e ) << std::endl;
 	std::cout << "_______\n" << std::endl;
 	
 	//MAX
 	std::cout << "Max values:\n" << std::endl;
-	std::cout << max( a, b ) << std::endl;
-	std::cout << max( a, c ) << std::endl;
-	std::cout << max( a, d ) << std::endl;
-	std::cout << max( a, e ) << std::endl;
-	std::cout << max( b, c ) << std::endl;
-	std::cout << max( b, d ) << std::endl;
-	std::cout << max( b, e ) << std::endl;
-	std::cout << max( c, d ) << std::endl;
-	std::cout << max( c, e ) << std::endl;
-	std::cout << max( d, e ) << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << Fixed::max( a, c ) << std::endl;
+	std::cout << Fixed::max( a, d ) << std::endl;
+	std::cout << Fixed::max( a, e ) << std::endl;
+	std::cout << Fixed::max( b, c ) << std::endl;
+	std::cout << Fixed::max( b, d ) << std::endl;
+	std::cout << Fixed::max( b, e ) << std::endl;
+	std::cout << Fixed::max( c, d ) << std::endl;
+	std::cout << Fixed::max( c, e ) << std::endl;
+	std::cout << Fixed::max( d, e ) << std::endl;
 	std::cout << "_______\n" << std::endl;
 
 	std::cout << "End values:\n" << std::endl;

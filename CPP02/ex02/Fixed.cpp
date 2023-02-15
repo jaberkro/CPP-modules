@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/18 12:20:00 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/15 19:07:44 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/15 22:19:59 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ Fixed::Fixed(void): _value(0)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int input): _value(input << this->_bits)
+Fixed::Fixed(const int input)
 {
 	std::cout << "Int constructor called" << std::endl;
+	this->setRawBits(input << this->_bits);
 }
 
-Fixed::Fixed(const float input): _value(roundf(input * pow(2, this->_bits)))
+Fixed::Fixed(const float input)
 {
 	std::cout << "Float constructor called" << std::endl;
+	this->setRawBits(roundf(input * (1 << this->_bits)));
 }
 
 Fixed::Fixed(const Fixed &fixed)
@@ -37,7 +39,7 @@ Fixed::Fixed(const Fixed &fixed)
 
 Fixed& Fixed::operator=(const Fixed &fixed)
 {
-	std::cout << "Assignment operator called" << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 	this->_value = fixed.getRawBits();
 	return (*this);
 }
@@ -61,7 +63,7 @@ void Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return (this->_value / (pow(2, this->_bits)));
+	return (this->_value * 1.0 / (1 << _bits));
 }
 
 int		Fixed::toInt(void) const
@@ -77,71 +79,59 @@ std::ostream& operator<<(std::ostream& out, const Fixed &toPrint)
 
 bool Fixed::operator>(const Fixed &toCheck) const
 {
-	if (this->_value > toCheck._value)
-		return (1);
-	return (0);
+	return (this->_value > toCheck._value);
 }
 
 bool Fixed::operator<(const Fixed &toCheck) const
 {
-	if (this->_value < toCheck._value)
-		return (1);
-	return (0);
+	return (toCheck > *this);
 }
 
 bool Fixed::operator>=(const Fixed &toCheck) const
 {
-	if (this->_value >= toCheck._value)
-		return (1);
-	return (0);
+	return (!(*this < toCheck));
 }
 
 bool Fixed::operator<=(const Fixed &toCheck) const
 {
-	if (this->_value <= toCheck._value)
-		return (1);
-	return (0);
+	return (!(*this > toCheck));
 }
 
 bool Fixed::operator==(const Fixed &toCheck) const
 {
-	if (this->_value == toCheck._value)
-		return (1);
-	return (0);
+	return (this->_value == toCheck._value);
 }
 
 bool Fixed::operator!=(const Fixed &toCheck) const
 {
-	if (this->_value != toCheck._value)
-		return (1);
-	return (0);
+	return (!(*this == toCheck));
 }
 
 Fixed	Fixed::operator+(const Fixed &toAdd) const
 {
 	Fixed result;
-	result._value = this->_value + toAdd._value;
+	result._value = this->getRawBits() + toAdd.getRawBits();
 	return (result);
 }
 
 Fixed	Fixed::operator-(const Fixed &toSubstract) const
 {
 	Fixed result;
-	result._value = this->_value - toSubstract._value;
+	result._value = this->getRawBits() - toSubstract.getRawBits();
 	return (result);
 }
 
 Fixed	Fixed::operator*(const Fixed &toMultiply) const
 {
 	Fixed result;
-	result._value = roundf(this->toFloat() * toMultiply.toFloat() * pow(2, 8));
+	result._value = (this->toFloat() * toMultiply.toFloat()) * (1 << this->_bits);
 	return (result);
 }
 
 Fixed	Fixed::operator/(const Fixed &toDivide) const
 {
 	Fixed result;
-	result._value = roundf(this->toFloat() / toDivide.toFloat() * pow(2, 8));
+	result._value = (this->toFloat() / toDivide.toFloat()) * (1 << this->_bits);
 	return (result);
 }
 
@@ -171,28 +161,28 @@ Fixed	Fixed::operator--(int)
 	return (temp);
 }
 
-Fixed&	min(Fixed &a, Fixed &b)
+Fixed&	Fixed::min(Fixed &a, Fixed &b)
 {
 	if (a.toFloat() <= b.toFloat())
 		return (a);
 	return (b);
 }
 
-const Fixed&	min(const Fixed &a, const Fixed &b)
+const Fixed&	Fixed::min(const Fixed &a, const Fixed &b)
 {
 	if (a.toFloat() <= b.toFloat())
 		return (a);
 	return (b);
 }
 
-Fixed&	max(Fixed &a, Fixed &b)
+Fixed&	Fixed::max(Fixed &a, Fixed &b)
 {
 	if (a.toFloat() >= b.toFloat())
 		return (a);
 	return (b);
 }
 
-const Fixed&	max(const Fixed &a, const Fixed &b)
+const Fixed&	Fixed::max(const Fixed &a, const Fixed &b)
 {
 	if (a.toFloat() >= b.toFloat())
 		return (a);
