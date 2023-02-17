@@ -6,38 +6,38 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:57:52 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/15 21:51:54 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/17 16:43:55 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 #include <iostream>
 
-Cat::Cat(void)
+WrongCat::WrongCat(void)
 {
-	std::cout << "Default constructor called on Cat" << std::endl;
-	this->_type = "Cat";
+	std::cout << "Default constructor called on WrongCat" << std::endl;
+	this->_type = "WrongCat";
 }
 
-Cat::Cat(const Cat &src)
+WrongCat::WrongCat(const WrongCat &src)
 {
-	std::cout << "Copy constructor called on Cat" << std::endl;
+	std::cout << "Copy constructor called on WrongCat" << std::endl;
 	*this = src;
 }
 
-Cat& Cat::operator=(const Cat &src)
+WrongCat& WrongCat::operator=(const WrongCat &src)
 {
-	std::cout << "Copy assignment operator called on Cat" << std::endl;
+	std::cout << "Copy assignment operator called on WrongCat" << std::endl;
 	this->_type = src._type;
 	return (*this);
 }
 
-Cat::~Cat(void)
+WrongCat::~WrongCat(void)
 {
-	std::cout << "Destructor called on Cat" << std::endl;
+	std::cout << "Destructor called on WrongCat" << std::endl;
 }
 
-void Cat::makeSound(void) const
+void WrongCat::makeSound(void) const
 {
-	std::cout << "Woofff" << std::endl;
+	std::cout << "Purrrr" << std::endl;
 }

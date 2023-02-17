@@ -6,37 +6,42 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:57:56 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/15 21:51:54 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/17 16:51:42 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 #include <iostream>
 
-Animal::Animal(void): _type("Animal")
+WrongAnimal::WrongAnimal(void): _type("WrongAnimal")
 {
-	std::cout << "Default constructor called on Animal" << std::endl;
+	std::cout << "Default constructor called on WrongAnimal" << std::endl;
 }
 
-Animal::Animal(const Animal &src)
+WrongAnimal::WrongAnimal(const WrongAnimal &src)
 {
-	std::cout << "Copy constructor called on Animal" << std::endl;
+	std::cout << "Copy constructor called on WrongAnimal" << std::endl;
 	*this = src;
 }
 
-Animal& Animal::operator=(const Animal &src)
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal &src)
 {
-	std::cout << "Copy assignment operator called on Animal" << std::endl;
+	std::cout << "Copy assignment operator called on WrongAnimal" << std::endl;
 	this->_type = src._type;
 	return (*this);
 }
 
-Animal::~Animal(void)
+WrongAnimal::~WrongAnimal(void)
 {
-	std::cout << "Destructor called on Animal" << std::endl;
+	std::cout << "Destructor called on WrongAnimal" << std::endl;
 }
 
-std::string Animal::getType(void) const
+std::string WrongAnimal::getType(void) const
 {
 	return (this->_type);
+}
+
+void WrongAnimal::makeSound(void) const
+{
+	std::cout << "Hakihakihaki" << std::endl;
 }

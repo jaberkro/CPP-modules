@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:20 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/15 21:51:54 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/17 17:30:38 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ Animal::~Animal(void)
 std::string Animal::getType(void) const
 {
 	return (this->_type);
+}
+
+void Animal::makeSound(void) const
+{
+	std::cout << "*silence*" << std::endl;
 }
