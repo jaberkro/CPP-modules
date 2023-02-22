@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:01 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/17 18:01:01 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/22 14:08:17 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ int	main(void)
 	delete wrongAnimalWrongCat;
 	std::cout << std::endl;
 	
+	// system("leaks polymorphism");
 	return (0);
 }
