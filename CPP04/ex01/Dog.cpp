@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:09 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/17 19:08:35 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/22 14:05:08 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ Dog::Dog(void)
 {
 	std::cout << "Default constructor called on Dog" << std::endl;
 	this->_type = "Dog";
+	this->_brain = new Brain();
 }
 
 Dog::Dog(const Dog &src)
