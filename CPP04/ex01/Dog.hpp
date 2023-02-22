@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:06 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/17 19:06:43 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/22 20:31:01 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ class Dog: public Animal
 		Dog& operator=(const Dog &src);
 		~Dog();
 
-	virtual void makeSound(void) const;
+	virtual void			makeSound(void) const;
+	virtual std::string		getIdea(int index) const;
+	virtual void			setIdea(std::string idea);
+	virtual int				countIdeas(void) const;
 
 	protected:
 		Brain*		_brain;

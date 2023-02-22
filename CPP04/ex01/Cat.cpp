@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:14 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/17 19:09:50 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/22 20:26:40 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,23 @@ Cat::Cat(const Cat &src)
 {
 	std::cout << "Copy constructor called on Cat" << std::endl;
 	*this = src;
+	for (int i = 0; i < 100; i++)
+	{
+		this->setIdea(src.getIdea(i));
+	}
+	this->_brain->setIndex(src.countIdeas());
 }
 
 Cat& Cat::operator=(const Cat &src)
 {
 	std::cout << "Copy assignment operator called on Cat" << std::endl;
 	this->_type = src._type;
-	this->_brain = src._brain;
+	this->_brain = new Brain();
+	for (int i = 0; i < 100; i++)
+	{
+		this->setIdea(src.getIdea(i));
+	}
+	this->_brain->setIndex(src.countIdeas());
 	return (*this);
 }
 
@@ -44,4 +54,21 @@ Cat::~Cat(void)
 void Cat::makeSound(void) const
 {
 	std::cout << "Purrrr" << std::endl;
+}
+
+std::string	Cat::getIdea(int index) const
+{
+	return (this->_brain->getIdea(index));
+}
+
+void	Cat::setIdea(std::string idea)
+{
+	this->_brain->setIdea(idea);
+}
+
+int	Cat::countIdeas(void) const
+{
+	if (this->_brain->getIndex() > 100)
+		return (100);
+	return (this->_brain->getIndex());
 }

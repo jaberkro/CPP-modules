@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:20 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/17 19:09:01 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/22 20:34:40 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,18 @@ void Animal::makeSound(void) const
 	std::cout << "*silence*" << std::endl;
 }
 
+std::string	Animal::getIdea(int index) const
+{
+	return ("no clue");
+}
 
+void	Animal::setIdea(std::string idea)
+{
+	std::cout << "An animal has no brain. Not possible to set idea" << std::endl;
+}
 
+int	Animal::countIdeas(void) const
+{
+	std::cout << "An animal has no brain and no ideas" << std::endl;
+	return (0);
+}
