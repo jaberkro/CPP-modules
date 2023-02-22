@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:09 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/22 20:27:25 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/22 20:58:23 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ Dog::Dog(const Dog &src)
 {
 	std::cout << "Copy constructor called on Dog" << std::endl;
 	*this = src;
+	this->_brain = new Brain();
 	for (int i = 0; i < 100; i++)
 	{
 		this->setIdea(src.getIdea(i));

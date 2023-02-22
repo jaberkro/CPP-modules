@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:01 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/22 20:46:06 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/22 20:57:36 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	main(void)
 		{
 			std::cout << catCopy.getIdea(i) << std::endl;
 		}
-		std::cout << std::endl;
 		std::cout << "\ndogCopys' ideas:" << dogCopy.countIdeas() << std::endl;
 		for (int i = 0; i < dogCopy.countIdeas(); i++)
 		{
