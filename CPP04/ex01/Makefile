@@ -6,22 +6,29 @@
 #    By: jaberkro <jaberkro@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/02/13 18:57:59 by jaberkro      #+#    #+#                  #
-#    Updated: 2023/02/17 19:10:17 by jaberkro      ########   odam.nl          #
+#    Updated: 2023/02/22 16:26:01 by jaberkro      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address -g3
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
+
 SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+OBJ = $(SRC:.cpp=.o)
 NAME = polymorphism
 
 all: $(NAME)
 
-$(NAME): $(SRC)
-	c++ $(FLAGS) $(SRC) -o $(NAME)
-	
-clean:
+$(NAME): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-fclean:
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $^ -o $@
+
+clean:
+	rm $(OBJ)
+
+fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
