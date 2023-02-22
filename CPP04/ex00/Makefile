@@ -6,7 +6,7 @@
 #    By: jaberkro <jaberkro@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/02/13 18:57:59 by jaberkro      #+#    #+#                  #
-#    Updated: 2023/02/22 14:07:52 by jaberkro      ########   odam.nl          #
+#    Updated: 2023/02/22 18:14:33 by jaberkro      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,14 @@ $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
 clean:
-	rm $(OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re
+debug: CXXFLAGS = -fsanitize=address
+debug: fclean all
+
+.PHONY: all, clean, fclean, re, debug
