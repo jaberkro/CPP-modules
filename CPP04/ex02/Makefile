@@ -6,14 +6,14 @@
 #    By: jaberkro <jaberkro@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/02/13 18:57:59 by jaberkro      #+#    #+#                  #
-#    Updated: 2023/02/22 16:41:20 by jaberkro      ########   odam.nl          #
+#    Updated: 2023/02/22 20:59:39 by jaberkro      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
-SRC = main.cpp AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRC = main.cpp AAnimal.cpp Dog.cpp Cat.cpp Brain.cpp
 OBJ = $(SRC:.cpp=.o)
 NAME = abstract
 
@@ -33,4 +33,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re
+debug: CXXFLAGS = -fsanitize=address -g
+debug: fclean all
+
+.PHONY: all, clean, fclean, re, debug

@@ -6,15 +6,13 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:01 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/22 16:53:14 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/22 20:51:34 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 #include <iostream>
 
 int	main(void)

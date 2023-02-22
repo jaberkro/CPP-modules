@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/17 18:38:30 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/17 18:57:42 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/22 21:00:53 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ class Brain
 		~Brain();
 
 		std::string	getIdea(int index) const;
-		void		setIdea(int index, std::string idea);
+		void		setIdea(std::string idea);
+		int			getIndex(void) const;
+		void		setIndex(int const index);
 
 	private:
 		std::string _ideas[100];
+		int			_index;
 };
 
 #endif
