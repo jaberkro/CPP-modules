@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:01 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/22 20:48:01 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/23 16:53:00 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 #include <iostream>
+
+void leak_checker(void)
+{
+	system("leaks polymorphism -q");
+}
 
 int	main(void)
 {
@@ -89,7 +94,7 @@ int	main(void)
 	delete wrongAnimalWrongAnimal;
 	delete wrongAnimalWrongCat;
 	std::cout << std::endl;
-	
-	// system("leaks polymorphism");
+
+	atexit(leak_checker);
 	return (0);
 }
