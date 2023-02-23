@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:01 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/22 20:51:34 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/23 16:52:12 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 #include "Cat.hpp"
 #include <iostream>
 
+void	leak_checker(void)
+{
+	system("leaks abstract -q");
+}
+
 int	main(void)
 {
 	{
-
-		// AAnimal	AAnimal; //this should give an error
+		// AAnimal	AAnimal; //uncommenting and compiling this should give an error
 		Cat		cat;
 		Dog		dog;
 
@@ -50,7 +54,6 @@ int	main(void)
 		std::cout << dog2->getType() << " says: ";
 		dog2->makeSound();
 
-
 		std::cout << std::endl;
 		// delete AAnimalAnimal;
 		// delete AAnimalCat;
@@ -58,7 +61,7 @@ int	main(void)
 		delete cat2;
 		delete dog2;
 		std::cout << std::endl;
+		atexit(leak_checker);
 	}
-	// system("leaks polymorphism");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:09 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/22 21:01:30 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/23 16:35:56 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ Dog::Dog(const Dog &src)
 {
 	std::cout << "Copy constructor called on Dog" << std::endl;
 	*this = src;
-	this->_brain = new Brain();
-	for (int i = 0; i < 100; i++)
-	{
-		this->setIdea(src.getIdea(i));
-	}
-	this->_brain->setIndex(src.countIdeas());
 }
 
 Dog& Dog::operator=(const Dog &src)
@@ -42,6 +36,7 @@ Dog& Dog::operator=(const Dog &src)
 	{
 		this->setIdea(src.getIdea(i));
 	}
+	this->_brain->setIndex(src.countIdeas());
 	return (*this);
 }
 

@@ -6,17 +6,17 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:06 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/22 21:01:40 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/23 16:50:47 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_HPP
 # define DOG_HPP
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 # include "Brain.hpp"
 # include <string>
 
-class Dog: public Animal
+class Dog: public AAnimal
 {
 	public:
 		Dog();

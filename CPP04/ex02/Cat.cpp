@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:14 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/22 21:01:05 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/23 16:35:03 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ Cat::Cat(const Cat &src)
 {
 	std::cout << "Copy constructor called on Cat" << std::endl;
 	*this = src;
-	this->_brain = new Brain();
-	for (int i = 0; i < 100; i++)
-	{
-		this->_brain->setIdea(src.getIdea(i));
-	}
-	this->_brain->setIndex(src.countIdeas());
 }
 
 Cat& Cat::operator=(const Cat &src)
