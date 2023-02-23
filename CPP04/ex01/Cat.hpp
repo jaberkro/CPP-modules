@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:12 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/22 20:30:54 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/23 16:33:21 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Cat: public Animal
 		virtual void			setIdea(std::string idea);
 		virtual int				countIdeas(void) const;
 
-	protected:
+	private:
 		Brain*		_brain;
 };
 

@@ -6,7 +6,7 @@
 /*   By: jaberkro <jaberkro@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 18:58:01 by jaberkro      #+#    #+#                 */
-/*   Updated: 2023/02/22 20:57:36 by jaberkro      ########   odam.nl         */
+/*   Updated: 2023/02/23 16:52:31 by jaberkro      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include <iostream>
+
+void leak_checker(void)
+{
+	system("leaks polymorphism -q");
+}
 
 int	main(void)
 {
@@ -114,6 +119,6 @@ int	main(void)
 		
 		std::cout << std::endl;
 	}
-	// system("leaks polymorphism");
+	atexit(leak_checker);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: jaberkro <jaberkro@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/02/13 18:57:59 by jaberkro      #+#    #+#                  #
-#    Updated: 2023/02/23 10:30:06 by jaberkro      ########   odam.nl          #
+#    Updated: 2023/02/23 16:41:07 by jaberkro      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ fclean: clean
 
 re: fclean all
 
-debug: CXXFLAGS = -fsanitize=address
+debug: CXXFLAGS = -fsanitize=address 
 debug: fclean all
 
 .PHONY: all, clean, fclean, re, debug
