@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 #include <string>
 
@@ -77,16 +77,16 @@ void		Bureaucrat::decrementGrade(void)
 }
 
 
-void	Bureaucrat::signForm(Form& form)
+void	Bureaucrat::signForm(AForm& aform)
 {
 	try
 	{
-		form.beSigned(*this);
-		std::cout << *this << " signed " << form << std::endl;
+		aform.beSigned(*this);
+		std::cout << *this << " signed " << aform << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << *this << " couldn't sign " << form << " because ";
+		std::cout << *this << " couldn't sign " << aform << " because ";
 		std::cerr << e.what() << '\n';
 	}
 }

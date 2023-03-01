@@ -7,7 +7,7 @@ class Form::GradeTooHighException: public std::exception
 	public:
 		virtual const char* what() const throw()
 		{
-			return ("This grade is too high!");
+			return ("Exception: grade too high");
 		}
 };
 
@@ -16,24 +16,38 @@ class Form::GradeTooLowException: public std::exception
 	public:
 		virtual const char* what() const throw()
 		{
-			return ("This grade is too low!");
+			return ("Exception: grade too low");
 		}
 };
 
+Form::Form(): _name("Nameless"), _signed(0), _signGrade(150), _executeGrade(150)
+{
+	std::cout << "Default constructor called on Bureaucrat" << std::endl;
+}
+
 Form::Form(std::string name, int signGrade, int executeGrade): _name(name), _signed(0), _signGrade(signGrade), _executeGrade(executeGrade)
 {
+	if (signGrade < 1 || executeGrade < 1)
+		throw Form::GradeTooHighException();
+	else if (signGrade > 150 || executeGrade > 150)
+		throw Form::GradeTooLowException();
 	std::cout << "Parametric constructor called on Form" << std::endl;
-	try
-	{
-		if (signGrade < 1 || executeGrade < 1)
-			throw Form::GradeTooHighException();
-		else if (signGrade > 150 || executeGrade > 150)
-			throw Form::GradeTooLowException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+}
+
+Form::Form(const Form &src): _name(src._name), _signed(src._signed), _signGrade(src._signGrade), _executeGrade(src._executeGrade)
+{
+	std::cout << "Copy constructor called on Form" << std::endl;
+}
+
+Form& Form::operator=(const Form &src)
+{
+	// this->_name = src.getName(); // hoe dit op te lossen?
+	this->_signed = src._signed;
+	// this->_signGrade = src._signGrade;
+	// this->_executeGrade = src._executeGrade;
+	std::cout << "Copy assignment operator called on Form" << std::endl;
+	return (*this);
+
 }
 
 Form::~Form(void)
@@ -69,11 +83,9 @@ int			Form::getExecuteGrade() const
 	return (this->_executeGrade);
 }
 
-int		Form::beSigned(const Bureaucrat &b)
+void	Form::beSigned(const Bureaucrat &b)
 {
 	if (b.getGrade() > this->_signGrade)
-		return (0);
-
+		throw Form::GradeTooLowException();
 	this->_signed = 1;
-	return (1);
 }

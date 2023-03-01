@@ -1,48 +1,45 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
+#include <string>
 
-class Bureaucrat::GradeTooHighException: public std::exception
+const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	public:
-		virtual const char* what() const throw()
-		{
-			return ("This grade is too high for a bureaucrat! Set to highest possible: 1");
-		}
-};
+	return ("Exception: Grade too high");
+}
 
-class Bureaucrat::GradeTooLowException: public std::exception
+const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	public:
-		virtual const char* what() const throw()
-		{
-			return ("This grade is too low for a bureaucrat! Set to lowest possible: 150");
-		}
-};
+	return ("Exception: Grade too low");
+}
+
+Bureaucrat::Bureaucrat(): _name("Nameless"), _grade(150)
+{
+	std::cout << "Default constructor called on Bureaucrat" << std::endl;
+}
 
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name)
 {
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	this->_grade = grade;
 	std::cout << "Parametric constructor called on Bureaucrat" << std::endl;
-	try
-	{
-		if (grade < 1)
-		{
-			this->_grade = 1;
-			throw Bureaucrat::GradeTooHighException();
-		}
-		else if (grade > 150)
-		{
-			this->_grade = 150;
-			throw Bureaucrat::GradeTooLowException();
-		}
-		else
-		{
-			this->_grade = grade;
-		}
-	}
-	catch(std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &src)
+{
+	*this = src;
+	std::cout << "Copy constructor called on Bureaucrat" << std::endl;
+}
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat &src)
+{
+	// this->_name = src.getName(); // hoe dit op te lossen?
+	this->_grade = src._grade;
+	std::cout << "Copy assignment operator called on Bureaucrat" << std::endl;
+	return (*this);
+
 }
 
 Bureaucrat::~Bureaucrat(void)
