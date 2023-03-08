@@ -28,7 +28,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name)
 	std::cout << "Parametric constructor called on Bureaucrat" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src)
+Bureaucrat::Bureaucrat(const Bureaucrat &src): _name(src._name)
 {
 	*this = src;
 	std::cout << "Copy constructor called on Bureaucrat" << std::endl;
@@ -36,7 +36,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat &src)
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &src)
 {
-	// this->_name = src.getName(); // hoe dit op te lossen?
 	this->_grade = src._grade;
 	std::cout << "Copy assignment operator called on Bureaucrat" << std::endl;
 	return (*this);
@@ -87,6 +86,20 @@ void	Bureaucrat::signForm(AForm& aform)
 	catch(const std::exception& e)
 	{
 		std::cout << *this << " couldn't sign " << aform << " because ";
+		std::cerr << e.what() << '\n';
+	}
+}
+
+void		Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << *this << " executed " << form << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << *this << " couldn't execute " << form << " because ";
 		std::cerr << e.what() << '\n';
 	}
 }

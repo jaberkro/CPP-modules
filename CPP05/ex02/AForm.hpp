@@ -20,12 +20,14 @@ class AForm
 
 		void		beSigned(const Bureaucrat &b);
 
-		virtual void		execute(Bureaucrat const& executor) const = 0;
+		void			execute(Bureaucrat const& executor) const;
+		virtual void	beExecuted(void) const = 0;
 
 		class	GradeTooHighException;
 		class	GradeTooLowException;
+		class	FormNotSignedException;
 
-	private:
+	protected:
 		const std::string	_name;
 		bool				_signed;
 		const int			_signGrade;

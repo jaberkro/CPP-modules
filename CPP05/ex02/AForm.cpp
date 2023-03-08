@@ -20,9 +20,18 @@ class AForm::GradeTooLowException: public std::exception
 		}
 };
 
+class AForm::FormNotSignedException: public std::exception
+{
+	public:
+		virtual const char* what() const throw()
+		{
+			return ("Exception: form not signed");
+		}
+};
+
 AForm::AForm(): _name("Nameless"), _signed(0), _signGrade(150), _executeGrade(150)
 {
-	std::cout << "Default constructor called on Bureaucrat" << std::endl;
+	std::cout << "Default constructor called on AForm" << std::endl;
 }
 
 AForm::AForm(std::string name, int signGrade, int executeGrade): _name(name), _signed(0), _signGrade(signGrade), _executeGrade(executeGrade)
@@ -34,17 +43,15 @@ AForm::AForm(std::string name, int signGrade, int executeGrade): _name(name), _s
 	std::cout << "Parametric constructor called on AForm" << std::endl;
 }
 
-AForm::AForm(const AForm &src): _name(src._name), _signed(src._signed), _signGrade(src._signGrade), _executeGrade(src._executeGrade)
+AForm::AForm(const AForm &src): _name(src._name), _signGrade(src._signGrade), _executeGrade(src._executeGrade)
 {
+	*this = src;
 	std::cout << "Copy constructor called on AForm" << std::endl;
 }
 
 AForm& AForm::operator=(const AForm &src)
 {
-	// this->_name = src.getName(); // hoe dit op te lossen?
 	this->_signed = src._signed;
-	// this->_signGrade = src._signGrade;
-	// this->_executeGrade = src._executeGrade;
 	std::cout << "Copy assignment operator called on AForm" << std::endl;
 	return (*this);
 
@@ -57,7 +64,7 @@ AForm::~AForm(void)
 
 std::ostream& operator<<(std::ostream&out, const AForm &toPrint)
 {
-	out << toPrint.getName() << ". AForm signed: " << toPrint.getSigned() << \
+	out << toPrint.getName() << ". Form signed: " << toPrint.getSigned() << \
 		". Grade needed to sign: " << toPrint.getSignGrade() << \
 		". Grade needed to execute: " << toPrint.getExecuteGrade() << ".";
 	return (out);
@@ -88,4 +95,13 @@ void	AForm::beSigned(const Bureaucrat &b)
 	if (b.getGrade() > this->_signGrade)
 		throw AForm::GradeTooLowException();
 	this->_signed = 1;
+}
+
+void	AForm::execute(Bureaucrat const& executor) const
+{
+	if (!this->getSigned())
+		throw AForm::FormNotSignedException();
+	if (executor.getGrade() > this->getExecuteGrade())
+		throw AForm::GradeTooLowException();
+	this->beExecuted();
 }
