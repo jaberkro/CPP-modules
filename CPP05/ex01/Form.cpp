@@ -34,17 +34,15 @@ Form::Form(std::string name, int signGrade, int executeGrade): _name(name), _sig
 	std::cout << "Parametric constructor called on Form" << std::endl;
 }
 
-Form::Form(const Form &src): _name(src._name), _signed(src._signed), _signGrade(src._signGrade), _executeGrade(src._executeGrade)
+Form::Form(const Form &src): _name(src._name), _signGrade(src._signGrade), _executeGrade(src._executeGrade)
 {
+	*this = src;
 	std::cout << "Copy constructor called on Form" << std::endl;
 }
 
 Form& Form::operator=(const Form &src)
 {
-	// this->_name = src.getName(); // hoe dit op te lossen?
 	this->_signed = src._signed;
-	// this->_signGrade = src._signGrade;
-	// this->_executeGrade = src._executeGrade;
 	std::cout << "Copy assignment operator called on Form" << std::endl;
 	return (*this);
 
