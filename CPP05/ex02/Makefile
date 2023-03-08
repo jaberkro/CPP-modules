@@ -2,7 +2,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRC = $(wildcard *.cpp)
 OBJ = $(SRC:.cpp=.o)
-NAME = execute
+NAME = executeForms
 
 all: $(NAME)
 
