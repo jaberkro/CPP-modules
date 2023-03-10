@@ -7,11 +7,11 @@ class Intern
 {
 	public:
 		Intern();
-		// Intern(const Intern &src);
-		// Intern& operator=(const Intern &src);
+		Intern(const Intern &src);
+		Intern& operator=(const Intern &src);
 		~Intern();
 
-		AForm::AForm * makeForm(std::string formName, std::string target);
+		AForm * makeForm(std::string formName, std::string target);
 };
 
 #endif
