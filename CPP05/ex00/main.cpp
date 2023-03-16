@@ -6,20 +6,6 @@ void	testLeaks(void)
 	system("leaks bureaucrat -q");
 }
 
-Bureaucrat tryCreate(std::string name, int grade)
-{
-	Bureaucrat x;
-	try
-	{
-		x = Bureaucrat(name, grade);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	return (x);
-}
-
 int	main(void)
 {
 
@@ -65,6 +51,37 @@ int	main(void)
 	{
 		Bureaucrat frank("Frank", -20);
 		std::cout << frank << std::endl;
+		std::cout << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << std::endl;
+
+	std::cout << "\n-----------------------------INCREMENT FAILS----------------------------" << std::endl;
+	try
+	{
+		Bureaucrat harl("Harl", 2);
+		std::cout << harl << std::endl;
+		harl.incrementGrade();
+		std::cout << harl << std::endl;
+		harl.incrementGrade();
+		std::cout << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	std::cout << "\n-----------------------------DECREMENT FAILS----------------------------" << std::endl;
+	try
+	{
+		Bureaucrat karl("Karl", 149);
+		std::cout << karl << std::endl;
+		karl.decrementGrade();
+		std::cout << karl << std::endl;
+		karl.decrementGrade();
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e)
