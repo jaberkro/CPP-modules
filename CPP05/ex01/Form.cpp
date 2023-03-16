@@ -22,7 +22,7 @@ class Form::GradeTooLowException: public std::exception
 
 Form::Form(): _name("Nameless"), _signed(0), _signGrade(150), _executeGrade(150)
 {
-	std::cout << "Default constructor called on Bureaucrat" << std::endl;
+	std::cout << "Default constructor called on Form" << std::endl;
 }
 
 Form::Form(std::string name, int signGrade, int executeGrade): _name(name), _signed(0), _signGrade(signGrade), _executeGrade(executeGrade)
@@ -45,7 +45,6 @@ Form& Form::operator=(const Form &src)
 	this->_signed = src._signed;
 	std::cout << "Copy assignment operator called on Form" << std::endl;
 	return (*this);
-
 }
 
 Form::~Form(void)
@@ -66,17 +65,17 @@ std::string Form::getName() const
 	return (this->_name);
 }
 
-bool		Form::getSigned() const
+bool	Form::getSigned() const
 {
 	return (this->_signed);
 }
 
-int			Form::getSignGrade() const
+int	Form::getSignGrade() const
 {
 	return (this->_signGrade);
 }
 
-int			Form::getExecuteGrade() const
+int	Form::getExecuteGrade() const
 {
 	return (this->_executeGrade);
 }

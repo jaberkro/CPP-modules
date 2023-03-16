@@ -54,7 +54,6 @@ AForm& AForm::operator=(const AForm &src)
 	this->_signed = src._signed;
 	std::cout << "Copy assignment operator called on AForm" << std::endl;
 	return (*this);
-
 }
 
 AForm::~AForm(void)

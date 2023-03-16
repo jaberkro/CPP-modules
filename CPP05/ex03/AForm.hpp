@@ -23,9 +23,23 @@ class AForm
 		void			execute(Bureaucrat const& executor) const;
 		virtual void	beExecuted(void) const = 0;
 
-		class	GradeTooHighException;
-		class	GradeTooLowException;
-		class	FormNotSignedException;
+		class	GradeTooHighException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class	GradeTooLowException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class	FormNotSignedException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
 
 	protected:
 		const std::string	_name;
