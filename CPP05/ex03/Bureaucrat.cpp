@@ -48,7 +48,7 @@ Bureaucrat::~Bureaucrat(void)
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat &toPrint)
 {
-	out << toPrint.getName() << ", bureaucrat grade " << toPrint.getGrade() << ".";
+	out << toPrint.getName() << ", bureaucrat grade " << toPrint.getGrade();
 	return (out);
 }
 
