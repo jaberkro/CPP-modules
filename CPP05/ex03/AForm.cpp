@@ -15,7 +15,7 @@ const char* AForm::GradeTooLowException::what() const throw()
 const char*	AForm::FormNotSignedException::what() const throw()
 {
 	return ("Exception: form not signed");
-};
+}
 
 AForm::AForm(): _name("Nameless"), _signed(0), _signGrade(150), _executeGrade(150)
 {
