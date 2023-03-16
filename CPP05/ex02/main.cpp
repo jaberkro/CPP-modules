@@ -2,6 +2,11 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
+void	testLeaks(void)
+{
+	system("leaks executeForms -q");
+}
+
 int	main(void)
 {
 	PresidentialPardonForm	obama("Obama");
@@ -119,5 +124,6 @@ int	main(void)
 		std::cerr << e.what() << '\n';
 	}
 	std::cout << std::endl;
+	atexit(testLeaks);
 	return (0);	
 }

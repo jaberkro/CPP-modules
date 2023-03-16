@@ -1,6 +1,11 @@
 #include "Form.hpp"
 #include <iostream>
 
+void	testLeaks(void)
+{
+	system("leaks form -q");
+}
+
 int	main(void)
 {
 
@@ -73,6 +78,6 @@ int	main(void)
 		std::cerr << e.what() << '\n';
 	}
 	std::cout << std::endl;
-
+	atexit(testLeaks);
 	return (0);
 }
