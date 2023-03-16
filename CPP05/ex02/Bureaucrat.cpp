@@ -49,7 +49,7 @@ Bureaucrat::~Bureaucrat(void)
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat &toPrint)
 {
-	out << toPrint.getName() << ", bureaucrat grade " << toPrint.getGrade();
+	out << toPrint.getName() << ", bureaucrat grade " << toPrint.getGrade() << ".";
 	return (out);
 }
 
@@ -67,14 +67,17 @@ void		Bureaucrat::incrementGrade(void)
 {
 	if (this->_grade > 1)
 		this->_grade--;
+	else
+		throw Bureaucrat::GradeTooHighException();
 }
 
 void		Bureaucrat::decrementGrade(void)
 {
 	if (this->_grade < 150)
 		this->_grade++;
+	else
+		throw Bureaucrat::GradeTooLowException();
 }
-
 
 void	Bureaucrat::signForm(AForm& aform)
 {
