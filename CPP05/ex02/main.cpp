@@ -59,7 +59,6 @@ int	main(void)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	std::cout << bush << std::endl;
 
 	//ben executes bush
 	std::cout << bush << std::endl;
@@ -85,7 +84,6 @@ int	main(void)
 	}
 
 	//robotomy gets executed by ben
-	std::cout << std::endl;
 	std::cout << pinochio << std::endl;
 	try
 	{
