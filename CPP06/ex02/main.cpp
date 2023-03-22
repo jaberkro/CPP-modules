@@ -11,11 +11,11 @@ Base * generate(void)
 	switch(std::rand() % 3)
 	{
 		case 0:
-			basePointer = new A;
+			basePointer = dynamic_cast<Base *>(new A);
 		case 1:
-			basePointer = new B;
+			basePointer = dynamic_cast<Base *>(new B);
 		case 2:
-			basePointer = new C;
+			basePointer = dynamic_cast<Base *>(new C);
 	}
 	return (basePointer);
 }
