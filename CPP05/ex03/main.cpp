@@ -13,12 +13,14 @@ int	main(void)
 	Intern		luke;
 	Bureaucrat	ben("Ben", 2);
 
+	std::srand(std::time(nullptr));
+	
 	std::cout << std::endl;
 	AForm* bender = luke.makeForm("robotomy request", "Bender");
-	
+		
+
 	ben.signForm(*bender);
 	ben.executeForm(*bender);
-
 
 	std::cout << std::endl;
 	delete bender;
