@@ -20,15 +20,16 @@ Base * generate(void)
 	return (basePointer);
 }
 
-void identify(Base* p)
-{
+// void identify(Base* p)
+// {
+// 	(void)p;
 
-}
+// }
 
-void identify(Base& p)
-{
-
-}
+// void identify(Base& p)
+// {
+// 	(void)p;
+// }
 
 
 int	main(void)
