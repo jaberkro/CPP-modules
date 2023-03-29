@@ -9,14 +9,14 @@ Serializer::Serializer(void)
 
 Serializer::Serializer(const Serializer &src)
 {
-	std::cout << "Copy constructor called on Serializer" << std::endl;
 	*this = src;
+	std::cout << "Copy constructor called on Serializer" << std::endl;
 }
 
 Serializer& Serializer::operator=(const Serializer &src)
 {
-	std::cout << "Copy assignment operator called on Serializer" << std::endl;
 	(void)src;
+	std::cout << "Copy assignment operator called on Serializer" << std::endl;
 	return (*this);
 }
 

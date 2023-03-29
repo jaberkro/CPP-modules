@@ -4,6 +4,7 @@
 struct	Data
 {
 	int	value;
+	int	secondValue;
 };
 
 #endif
