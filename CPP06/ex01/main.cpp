@@ -9,7 +9,6 @@ void	testLeaks(void)
 
 int	main(void)
 {
-	Serializer	s;
 	Data		data;
 	Data		*dataPointer;
 	uintptr_t	uintPointer;
@@ -28,12 +27,12 @@ int	main(void)
 	std::cout << "second value at address dataPointer points to: " << dataPointer->secondValue << std::endl;
 
 	std::cout << "\nSERIALIZING..." << std::endl;
-	uintPointer = s.serialize(dataPointer);
+	uintPointer = Serializer::serialize(dataPointer);
 	std::cout << "address of p: " << &uintPointer << std::endl;
 	std::cout << "value of p: " << uintPointer << std::endl;
 
 	std::cout << "\nDESERIALIZING..." << std::endl;
-	newPointer = s.deserialize(uintPointer);
+	newPointer = Serializer::deserialize(uintPointer);
 	std::cout << "address of newPointer: " << &newPointer << std::endl;
 	std::cout << "address np points to: " << newPointer << std::endl;
 	std::cout << "value of np: " << newPointer->value << std::endl;
