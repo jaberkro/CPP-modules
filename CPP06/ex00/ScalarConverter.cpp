@@ -146,7 +146,7 @@ static void printValues(char c, int i, float f, double d)
 
 static int isChar(std::string input)
 {
-	if (input.at(0) >= 40 && input.at(0) < 127 && input.size() == 1)
+	if ((input.at(0) >= 40 && input.at(0) < 127 && input.size() == 1) && (input.at(0) < 48 || input.at(0) > 57))
 		return (1);
 	return (0);
 }
@@ -181,7 +181,7 @@ static int error_found(std::string input)
 		std::cerr << "Error: empty string" << std::endl;
 		return (1);
 	}
-	if (isdigit(input.at(0)) || (isdigit(input.at(1) && (input.at(0) == '+' || input.at(0) == '-'))))
+	if (isdigit(input.at(0)) || (input.size() > 1 && isdigit(input.at(1) && (input.at(0) == '+' || input.at(0) == '-'))))
 	{
 		for (size_t i = 1; i < input.size(); i++)
 		{
@@ -193,6 +193,11 @@ static int error_found(std::string input)
 			}
 		}
 	}
+	else if (input.size() > 1 && input.at(0) != 'n')
+	{
+		std::cerr << "Error: invalid input: " << input << std::endl;
+		return (1);
+	}	
 	return (0);
 }
 
