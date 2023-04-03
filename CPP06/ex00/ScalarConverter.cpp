@@ -181,7 +181,9 @@ static int error_found(std::string input)
 		std::cerr << "Error: empty string" << std::endl;
 		return (1);
 	}
-	if (isdigit(input.at(0)) || (input.size() > 1 && isdigit(input.at(1) && (input.at(0) == '+' || input.at(0) == '-'))))
+	if (input == "+inf" || input == "+inff" || input == "-inf" || input == "-inff" || input == "nan" || input == "nanf")
+		;
+	else if (isdigit(input.at(0)) || (input.size() > 1 && isdigit(input.at(1) && (input.at(0) == '+' || input.at(0) == '-'))))
 	{
 		for (size_t i = 1; i < input.size(); i++)
 		{
