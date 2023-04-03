@@ -32,77 +32,49 @@ ScalarConverter::~ScalarConverter(void)
 
 void	ScalarConverter::setFromChar(std::string input)
 {
-	try
-	{
-		_cvalue = input.at(0);
-		_ivalue = static_cast<int>(_cvalue);
-		_fvalue = static_cast<float>(_cvalue);
-		_dvalue = static_cast<double>(_cvalue);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	_cvalue = input.at(0);
+	_ivalue = static_cast<int>(_cvalue);
+	_fvalue = static_cast<float>(_cvalue);
+	_dvalue = static_cast<double>(_cvalue);
 }
 
 void	ScalarConverter::setFromInteger(std::string input)
 {
-	try
-	{
-		_ivalue = static_cast<int>(stoi(input));
-		if (_ivalue >= 40 && _ivalue < 127)
-			_cvalue = static_cast<char>(_ivalue);
-		else
-			_cvalue = -1;
-		_fvalue = static_cast<float>(_ivalue);
-		_dvalue = static_cast<double>(_ivalue);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	_ivalue = static_cast<int>(stoi(input));
+	if (_ivalue >= 0 && _ivalue < 127)
+		_cvalue = static_cast<char>(_ivalue);
+	else
+		_cvalue = -1;
+	_fvalue = static_cast<float>(_ivalue);
+	_dvalue = static_cast<double>(_ivalue);
 }
 
 void	ScalarConverter::setFromFloat(std::string input)
 {
-	try
-	{
 		_fvalue = stof(input);
-		if (_fvalue >= 40.0 && _fvalue < 127.0)
+		if (_fvalue >= 0.0 && _fvalue < 127.0)
 			_cvalue = static_cast<char>(_fvalue);
 		else
 			_cvalue = -1;
 		if (input == "-inff" || input == "+inff")
-			_ivalue = std::numeric_limits<int>::infinity();
+			_ivalue = -2147483648;
 		else
 			_ivalue = static_cast<int>(_fvalue);
 		_dvalue = static_cast<double>(_fvalue);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
 }
 
 void	ScalarConverter::setFromDouble(std::string input)
 {
-	try
-	{
-		_dvalue = stod(input);
-		if (_dvalue >= 40.0 && _dvalue < 127.0)
-			_cvalue = static_cast<char>(_dvalue);
-		else
-			_cvalue = -1;
-		if (input == "-inf" || input == "+inf")
-			_ivalue = std::numeric_limits<int>::infinity();
-		else
-			_ivalue = static_cast<int>(_dvalue);
-		_fvalue = static_cast<float>(_dvalue);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	_dvalue = stod(input);
+	if (_dvalue >= 0.0 && _dvalue < 127.0)
+		_cvalue = static_cast<char>(_dvalue);
+	else
+		_cvalue = -1;
+	if (input == "-inf" || input == "+inf")
+		_ivalue = -2147483648;
+	else
+		_ivalue = static_cast<int>(_dvalue);
+	_fvalue = static_cast<float>(_dvalue);
 }
 
 char	ScalarConverter::getChar(void)
@@ -128,7 +100,7 @@ double	ScalarConverter::getDouble(void)
 static void	printChar(char c)
 {
 	std::cout  << "char: ";
-	if (c == 0)
+	if (c >= 0 && c <= 39)
 		std::cout << "Non displayable" << std::endl;
 	else if (c == -1)
 		std::cout << "impossible" << std::endl;
@@ -138,7 +110,11 @@ static void	printChar(char c)
 
 static void	printInteger(int i)
 {
-	std::cout << "int: " << i << std::endl;
+	std::cout << "int: ";
+	if (i == -2147483648)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << i << std::endl;
 }
 
 static void	printFloat(float f)
@@ -155,34 +131,96 @@ static void	printDouble(double d)
 	std::cout << "double: " << d << std::endl;
 }
 
-void	ScalarConverter::convert(std::string input)
+static void printValues(char c, int i, float f, double d)
+{
+	if ((i < -1000000 || i > 1000000) && i != -2147483648)
+	{
+		std::cerr << "Error: input out of range [-1000000, 1000000]" << std::endl;
+		return ;
+	}
+	printChar(c);
+	printInteger(i);
+	printFloat(f);
+	printDouble(d);
+}
+
+static int isChar(std::string input)
+{
+	if (input.at(0) >= 40 && input.at(0) < 127 && input.size() == 1)
+		return (1);
+	return (0);
+}
+
+static int isInteger(std::string input)
+{
+	if ((isdigit(input.at(0)) || ((input.at(0) == '+' || input.at(0) == '-') && input.at(1) && isdigit(input.at(1)))) && input.find('.', 1) < 0)
+		return (1);
+	return (0);
+}
+
+static int isFloat(std::string input)
+{
+	if ((input.back() == 'f' && input.size() > 1 && isdigit(input.at(input.size() - 2))) || \
+			input == "-inff" || input == "+inff" || input == "nanf")
+		return (1);
+	return (0);
+}
+
+static int isDouble(std::string input)
+{
+	if ((input.find('.', 1) >= 0 && input.back() != '.') || \
+			input == "-inf" || input == "+inf" || input == "nan")
+		return (1);
+	return (0);	
+}
+
+static int error_found(std::string input)
 {
 	if (input.empty())
 	{
-		std::cout << "Error: empty string" << std::endl;
-		return ;
+		std::cerr << "Error: empty string" << std::endl;
+		return (1);
 	}
-
-	if (isalpha(input.at(0)) && input.size() == 1)
-		setFromChar(input);
-	else if ((input.back() == 'f' && input.size() > 1 && isdigit(input.at(input.size() - 2))) || \
-		input == "-inff" || input == "+inff" || input == "nanf")
-		setFromFloat(input);
-	else if ((input.find('.', 1) >= 0 && input.find('.', 1) < input.size()) || \
-		input == "-inf" || input == "+inf" || input == "nan")
-		setFromDouble(input);
-	else if (isdigit(input.at(0)) || ((input.at(0) == '+' || input.at(0) == '-') && input.at(1) && isdigit(input.at(1))))
-		setFromInteger(input);
-	else
+	if (isdigit(input.at(0)) || (isdigit(input.at(1) && (input.at(0) == '+' || input.at(0) == '-'))))
 	{
-		std::cout << "Error: invalid input" << std::endl;
-		return ;
+		for (size_t i = 1; i < input.size(); i++)
+		{
+			if ((!isdigit(input.at(i)) && input.at(i) != '.' && (input.at(i) != 'f' || (input.at(i) == 'f' && i != input.size() - 1))) || \
+				(input.at(i) == '.' && i < input.size() - 1 && !isdigit(input.at(i + 1))))
+			{
+				std::cerr << "Error: invalid input: " << input << std::endl;
+				return (1);
+			}
+		}
 	}
-
-	printChar(getChar());
-	printInteger(getInteger());
-	printFloat(getFloat());
-	printDouble(getDouble());
+	return (0);
 }
 
-//not working yet: int 0, int inff int nan etc
+void	ScalarConverter::convert(std::string input)
+{
+	if (error_found(input))
+		return ;
+	try
+	{
+		if (isChar(input))
+			setFromChar(input);
+		else if (isFloat(input))
+			setFromFloat(input);
+		else if (isDouble(input))
+			setFromDouble(input);
+		else if (isInteger(input))
+			setFromInteger(input);
+		else
+		{
+			std::cerr << "Error: invalid input: " << input << std::endl;
+			return ;
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Error: ";
+		std::cerr << e.what() << '\n';
+		return ;
+	}
+	printValues(getChar(), getInteger(), getFloat(), getDouble());
+}
