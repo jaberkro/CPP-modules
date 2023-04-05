@@ -181,25 +181,45 @@ static int error_found(std::string input)
 		std::cerr << "Error: empty string" << std::endl;
 		return (1);
 	}
-	if (input == "+inf" || input == "+inff" || input == "-inf" || input == "-inff" || input == "nan" || input == "nanf")
+	else if (input.size() > 10)
+	{
+		std::cerr << "Error: string too long: max 10 characters in range [-1000000, 1000000]" << std::endl;
+		return (1);
+	}
+	else if (input == "+inf" || input == "+inff" || input == "-inf" || input == "-inff" || input == "nan" || input == "nanf")
 		;
-	else if (isdigit(input.at(0)) || (input.size() > 1 && isdigit(input.at(1) && (input.at(0) == '+' || input.at(0) == '-'))))
+	else if ((!isdigit(input.at(0)) && input.at(0) != '+' && input.at(0) != '-') && input.size() > 1)
+	{
+		std::cerr << "Error: invalid input: " << input << ": multiple chars" << std::endl;
+		return (1);
+	}
+	else if (input.size() > 1 && (input.find('-', 1) != std::string::npos || input.find('+', 1) != std::string::npos || \
+		((input.at(0) == '+' || input.at(0) == '-') && !isdigit(input.at(1)))))
+	{
+		std::cerr << "Error: invalid input: " << input << ": wrong usage of signs" << std::endl;
+		return (1);
+	}
+	else if (isdigit(input.at(0)) || ((input.at(0) == '+' || input.at(0) == '-') && input.size() > 1 && isdigit(input.at(1))))
 	{
 		for (size_t i = 1; i < input.size(); i++)
 		{
-			if ((!isdigit(input.at(i)) && input.at(i) != '.' && (input.at(i) != 'f' || (input.at(i) == 'f' && i != input.size() - 1))) || \
-				(input.at(i) == '.' && i < input.size() - 1 && !isdigit(input.at(i + 1))))
+			if (!isdigit(input.at(i)) && input.at(i) != '.' && input.at(i) != 'f')
 			{
-				std::cerr << "Error: invalid input: " << input << std::endl;
+				std::cerr << "Error: invalid input: " << input << ": wrong usage of chars" << std::endl;
+				return (1);
+			}
+			else if (input.at(i) == '.' && (i == input.size() - 1 || !isdigit(input.at(i + 1))))
+			{
+				std::cerr << "Error: invalid input: " << input << ": wrong usage of '.'" << std::endl;
+				return (1);
+			}
+			else if (input.at(i) == 'f' && (i != input.size() - 1 || !isdigit(input.at(i - 1))))
+			{
+				std::cerr << "Error: invalid input: " << input << ": wrong usage of f" << std::endl;
 				return (1);
 			}
 		}
 	}
-	else if (input.size() > 1 && input.at(0) != 'n')
-	{
-		std::cerr << "Error: invalid input: " << input << std::endl;
-		return (1);
-	}	
 	return (0);
 }
 
@@ -219,7 +239,7 @@ void	ScalarConverter::convert(std::string input)
 			setFromInteger(input);
 		else
 		{
-			std::cerr << "Error: invalid input: " << input << std::endl;
+			std::cerr << "Error: invalid input: " << input << ": not a char, integer, float or double" << std::endl;
 			return ;
 		}
 	}
