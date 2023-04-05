@@ -75,6 +75,7 @@ int	main(void)
 	random2 = generate();
 	random3 = generate();
 	random4 = generate();
+
 	identify(random1);
 	identify(*random1);
 	identify(random2);
