@@ -2,7 +2,7 @@
 # define ITER_HPP
 
 template <typename T, typename V>
-void	iter(T t, unsigned int u, V v)
+void	iter(const T *t, unsigned int u, V v)
 {
 	for (unsigned int i = 0; i < u; i++)
 	{
