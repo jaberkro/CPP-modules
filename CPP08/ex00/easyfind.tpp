@@ -3,7 +3,6 @@
 
 # include <iostream>
 # include <algorithm>
-// # include <exception>
 
 template<typename T>
 void	easyfind(T t, int n)
@@ -17,14 +16,6 @@ void	easyfind(T t, int n)
 	}
 	if (found == 0)
 		throw std::exception();
-	// while (t.at(i))
-	// {
-	// 	if (t == n)
-	// 		std::cout << "match!" << std::endl;
-	// 	t++;
-	// }
-	// if (t.find(n) < 0)
-	// 	std::cout << "not found" << std::endl;
 }
 
 #endif
