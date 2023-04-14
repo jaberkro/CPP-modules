@@ -1,21 +1,10 @@
 #include <iostream>
 #include "Span.hpp"
 
-void addManySameNumbers(Span &sp, int amount, int value)
+void	testLeaks(void)
 {
-	for (int i = 0; i < amount; i++)
-	{
-		sp.addNumber(value);
-	}
-}
-
-void	addIncrementingNumbers(Span &sp, int start, int end)
-{
-	for (int i = start; i < end; i++)
-	{
-		sp.addNumber(i);
-	}
-
+	std::cout << std::endl;
+	system("leaks span -q");
 }
 
 int main (void)
@@ -97,8 +86,8 @@ int main (void)
 			sp11000.addNumber(17);
 			sp11000.addNumber(9);
 			sp11000.addNumber(11);
-			addManySameNumbers(sp11000, 100, 300);
-			addIncrementingNumbers(sp11000, 105, 11999);
+			sp11000.addManySameNumbers(100, 300);
+			sp11000.addIncrementingNumbers(105, 11999);
 		}
 		catch(const std::exception& e)
 		{
@@ -120,7 +109,7 @@ int main (void)
 		Span sp25000 = Span(25000);
 		try
 		{
-			addIncrementingNumbers(sp25000, 0, 25000);
+			sp25000.addIncrementingNumbers(0, 25000);
 		}
 		catch(const std::exception& e)
 		{
@@ -137,9 +126,7 @@ int main (void)
 		}
 	}
 
+	atexit(testLeaks);
 	
-	
-	
-
 	return 0;
 }

@@ -15,6 +15,9 @@ class Span
 		int		shortestSpan(void);
 		int		longestSpan(void);
 
+		void 	addManySameNumbers(int amount, int value);
+		void	addIncrementingNumbers(int start, int end);
+
 		std::vector<int>	_vector;
 		unsigned int		_index;
 

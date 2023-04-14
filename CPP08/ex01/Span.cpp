@@ -82,3 +82,19 @@ int		Span::longestSpan(void)
 	copy.clear();
 	return (dist);
 }
+
+void 	Span::addManySameNumbers(int amount, int value)
+{
+	for (int i = 0; i < amount; i++)
+	{
+		this->addNumber(value);
+	}
+}
+
+void	Span::addIncrementingNumbers(int start, int end)
+{
+	for (int i = start; i < end; i++)
+	{
+		this->addNumber(i);
+	}
+}
