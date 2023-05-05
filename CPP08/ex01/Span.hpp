@@ -18,9 +18,6 @@ class Span
 		void 	addManySameNumbers(int amount, int value);
 		void	addIncrementingNumbers(int start, int end);
 
-		std::vector<int>	_vector;
-		unsigned int		_index;
-
 		class	IndexOutOfRangeException: public std::exception
 		{
 			public:
@@ -34,6 +31,8 @@ class Span
 		};
 
 	private:
+		std::vector<int>	_vector;
+		unsigned int		_index;
 
 		Span();
 };
