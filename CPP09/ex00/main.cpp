@@ -2,6 +2,12 @@
 #include <iostream>
 #include <fstream>
 
+void leakCheck(void)
+{
+	std::cout << std::endl;
+	system("leaks btc -q");
+}
+
 std::string lowerYear(std::string date)
 {
 	date.at(5) = '1';
@@ -50,7 +56,7 @@ std::string lowerMonth(std::string date)
 	return (date);
 }
 
-std::string lowerDate(std::string date)
+std::string lowerDay(std::string date)
 {
 	if ((date.at(8) > '0' && date.at(9) > '0') || (date.at(8) == '0' && date.at(9) > '1'))
 		date.at(9)--;
@@ -81,7 +87,7 @@ float findValue(std::string line, BitcoinExchange &btc)
 		}
 		catch(const std::exception& e)
 		{
-			date = lowerDate(date);
+			date = lowerDay(date);
 		}
 	}
 	std::cout << "Error: bad input => [" << line.substr(0, 10) << std::endl;
@@ -123,7 +129,7 @@ int	isInt(std::string toCheck)
 
 int	validValue(std::string value)
 {
-	double val;
+	float val;
 
 	if (value.at(0) == '-')
 	{
@@ -134,7 +140,7 @@ int	validValue(std::string value)
 	{
 		try
 		{
-			val = std::stod(value);
+			val = std::stof(value);
 		}
 		catch(const std::exception& e)
 		{
@@ -146,9 +152,7 @@ int	validValue(std::string value)
 		else if (isInt(value) && val >= 1000)
 			std::cout << "Error: too large a number." << std::endl;
 		else if (isInt(value) || isFloat(value))
-		{
 			return (1);
-		}
 	}
 	else
 	{
@@ -176,6 +180,7 @@ int validDate(std::string date)
 	}
 	catch(const std::exception& e)
 	{
+		std::cout << e.what() << std::endl;
 		return (0);
 	}
 	if (year < 2009 || year > 2022 || month < 1 || month > 12 || day < 1 || day > 31)
@@ -200,9 +205,7 @@ int	validLine(std::string line)
 		return (0);
 	}
 	if (!validValue(line.substr(line.find(" | ") + 3)))
-	{
 		return (0);
-	}
 	return (1);
 }
 
@@ -214,12 +217,8 @@ void	processFile(std::ifstream &userFile)
 	BitcoinExchange	btc;
 
 	std::getline(userFile, line);
-	while (userFile)
+	while (std::getline(userFile, line))
 	{
-		std::getline(userFile, line);
-		
-		if (line == "")
-			break;
 		if (validLine(line))
 		{
 			try
@@ -241,12 +240,12 @@ int main (int argc, char **argv)
 {
 	std::ifstream userFile;
 
+	atexit(leakCheck);
 	if (argc != 2)
 	{
 		std::cout << "Error: could not open file." << std::endl;
 		return (1);
 	}
-
 	userFile.open(argv[1]);
 	if (!userFile.is_open())
 	{
@@ -255,5 +254,5 @@ int main (int argc, char **argv)
 	}
 	processFile(userFile);
 	userFile.close();
-	return 0;
+	return (0);
 }

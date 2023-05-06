@@ -9,16 +9,17 @@ BitcoinExchange::BitcoinExchange(void)
 
 	dataFile.open("data.csv");
 	std::getline(dataFile, line);
-	while (dataFile)
+	while (std::getline(dataFile, line))
 	{
-		std::getline(dataFile, line);
 		try
 		{
-			this->_map[line.substr(0, 10)] = std::stof(line.substr(11, line.size() - 1)); // this gives an exception always
+			if (line.size() > 11)
+				this->_map[line.substr(0, 10)] = std::stof(line.substr(11));
 		}
 		catch(const std::exception& e)
 		{
 			std::cout << "exception: " << e.what() << std::endl;
+			dataFile.close();
 			return ;
 		}
 	}
