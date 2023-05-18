@@ -128,5 +128,5 @@ int main (void)
 
 	atexit(testLeaks);
 	
-	return 0;
+	return (0);
 }
