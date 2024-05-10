@@ -4,8 +4,8 @@
 # include <stack>
 # include <iterator>
 
-template <typename T, typename Container = std::deque<T> >
-class MutantStack: public std::stack<T, Container>
+template <typename T>
+class MutantStack: public std::stack<T>
 {
 	public:
 		MutantStack();
@@ -15,8 +15,8 @@ class MutantStack: public std::stack<T, Container>
 
 		typedef typename std::stack<T>::container_type::iterator iterator;
 
-		iterator			begin(void);
-		iterator			end(void);
+		iterator	begin(void);
+		iterator	end(void);
 };
 
 # include "MutantStack.tpp"
