@@ -19,7 +19,7 @@ template <typename T>
 MutantStack<T>& MutantStack<T>::operator=(const MutantStack &src)
 {
 	std::cout << "Copy assignment operator called on MutantStack" << std::endl;
-	std::stack<int>::operator=(src); //check
+	std::stack<int>::operator=(src);
 	return (*this);
 }
 
