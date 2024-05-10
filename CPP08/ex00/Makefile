@@ -1,4 +1,4 @@
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -std=c++11 -pedantic
+CXXFLAGS = -Wall -Wextra -Werror -std=c++11 -pedantic 
 
 SRC = $(wildcard *.cpp)
 OBJ = $(SRC:.cpp=.o)
