@@ -1,84 +1,65 @@
 #include <iostream>
 #include <vector>
 #include <array>
+#include <queue>
+#include <iterator>
 #include "easyfind.hpp"
+
+template<typename T>
+void testPresent(T &t, int number) {
+	std::cout << "Testing if the number [" << number << "] is present: ";
+	try
+	{
+		std::cout << *(easyfind(t, number)) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+}
 
 int main (void)
 {
-	std::vector<int> v;
+	{
+		std::vector<int> v;
 
-	v.push_back(30);
-	v.push_back(12);
-	v.push_back(1);
+		v.push_back(30);
+		v.push_back(12);
+		v.push_back(1);
 
-	try
-	{
-		std::cout << "trying to find 21: ";
-		easyfind(v, 21);
-		std::cout << "found" << std::endl;
+		std::cout << "Vector easyfind:" << std::endl;
+		testPresent(v, 21);
+		testPresent(v, 1);
+		testPresent(v, 3);
+		std::cout << std::endl;
 	}
-	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
-	}
-	try
-	{
-		std::cout << "trying to find 1: ";
-		easyfind(v, 1);
-		std::cout << "found" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	try
-	{
-		std::cout << "trying to find 3: ";
-		easyfind(v, 3);
-		std::cout << "found" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+		std::array<int, 10> a;
 
-	std::cout << std::endl;
+		for (int i = 0; i < 10; i++)
+		{
+			a.at(i) = i;
+		}	
 
-	std::array<int, 10> a;
+		std::cout << "Array easyfind:" << std::endl;
+		testPresent(a, 21);
+		testPresent(a, 1);
+		testPresent(a, 3);
+		std::cout << std::endl;
+	}
+	{
+		std::deque<int> d;
 
-	for (int i = 0; i < 10; i++)
-		a.at(i) = i;
+		for (int i = 0; i < 30; i++)
+		{
+			d.push_back(i);	
+		}	
 
-	try
-	{
-		std::cout << "trying to find 21: ";
-		easyfind(a, 21);
-		std::cout << "found" << std::endl;
+		std::cout << "Deque easyfind:" << std::endl;
+		testPresent(d, 21);
+		testPresent(d, 1);
+		testPresent(d, 3);
+		std::cout << std::endl;
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	try
-	{
-		std::cout << "trying to find 1: ";
-		easyfind(a, 1);
-		std::cout << "found" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	try
-	{
-		std::cout << "trying to find 3: ";
-		easyfind(a, 3);
-		std::cout << "found" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-
 	return (0);
 }

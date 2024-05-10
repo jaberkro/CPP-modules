@@ -3,19 +3,15 @@
 
 # include <iostream>
 # include <algorithm>
+# include <iterator>
 
 template<typename T>
-void	easyfind(T t, int n)
+typename T::iterator	easyfind(T &t, int n)
 {
-	bool	found = 0;
-
-	for (unsigned int i = 0; i < t.size(); i++)
-	{
-		if (t[i] == n)
-			found = 1;
-	}
-	if (found == 0)
-		throw std::exception();
+	typename T::iterator result = std::find(t.begin(), t.end(), n);
+	if (result == t.end())
+		throw (std::runtime_error("Int not found"));
+	return (result);
 }
 
 #endif
