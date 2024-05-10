@@ -11,12 +11,12 @@ class Span
 		Span& operator=(const Span &src);
 		~Span();
 
-		void	addNumber(int n);
-		int		shortestSpan(void);
-		int		longestSpan(void);
+		void					addNumber(int n);
+		int						shortestSpan(void);
+		int						longestSpan(void);
+		const std::vector<int> 	&getVector(void) const;
 
-		void 	addManySameNumbers(int amount, int value);
-		void	addIncrementingNumbers(int start, int end);
+		void	addIncrementingNumbers(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end, int startNumber);
 
 		class	IndexOutOfRangeException: public std::exception
 		{
@@ -32,7 +32,6 @@ class Span
 
 	private:
 		std::vector<int>	_vector;
-		unsigned int		_index;
 
 		Span();
 };

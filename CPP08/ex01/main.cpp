@@ -1,34 +1,52 @@
 #include <iostream>
 #include "Span.hpp"
 
-void	testLeaks(void)
-{
-	std::cout << std::endl;
-	system("leaks span -q");
-}
-
 int main (void)
 {
-	std::cout << "\n________SPAN OF SIZE 0_______________" << std::endl;
-	try
 	{
+		std::cout << "\n________SPAN OF SIZE 0_______________" << std::endl;
 		Span sp = Span(0);
-		std::cout << sp.shortestSpan() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
+		try
+		{
+			std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		try
+		{
+			std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
 	
-	std::cout << "\n________SPAN OF SIZE 1_______________" << std::endl;
-	try
-	{
+		{
+		std::cout << "\n________SPAN OF SIZE 1_______________" << std::endl;
 		Span sp1 = Span(1);
-		std::cout << sp1.longestSpan() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
+		try
+		{
+			std::cout << "Shortest span: " << sp1.shortestSpan() << std::endl;
+
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		try
+		{
+			std::cout << "Longest span: " << sp1.longestSpan() << std::endl;
+
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
 
 	std::cout << "\n________SPAN OF SIZE 2_______________" << std::endl;
@@ -37,8 +55,8 @@ int main (void)
 		Span sp2 = Span(2);
 		sp2.addNumber(1000);
 		sp2.addNumber(100);
-		std::cout << sp2.shortestSpan() << std::endl;
-		std::cout << sp2.longestSpan() << std::endl;
+		std::cout << "Shortest span: " << sp2.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp2.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -52,8 +70,8 @@ int main (void)
 		sp3.addNumber(1000);
 		sp3.addNumber(100);
 		sp3.addNumber(-500);
-		std::cout << sp3.shortestSpan() << std::endl;
-		std::cout << sp3.longestSpan() << std::endl;
+		std::cout << "Shortest span: " << sp3.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp3.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -68,8 +86,8 @@ int main (void)
 		sp5.addNumber(17);
 		sp5.addNumber(9);
 		sp5.addNumber(11);
-		std::cout << sp5.shortestSpan() << std::endl;
-		std::cout << sp5.longestSpan() << std::endl;
+		std::cout << "Shortest span: " << sp5.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp5.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -86,8 +104,7 @@ int main (void)
 			sp11000.addNumber(17);
 			sp11000.addNumber(9);
 			sp11000.addNumber(11);
-			sp11000.addManySameNumbers(100, 300);
-			sp11000.addIncrementingNumbers(105, 11999);
+			sp11000.addIncrementingNumbers(sp11000.getVector().begin() + 100, sp11000.getVector().begin() + 200, 500);
 		}
 		catch(const std::exception& e)
 		{
@@ -95,8 +112,8 @@ int main (void)
 		}
 		try
 		{
-			std::cout << sp11000.shortestSpan() << std::endl;
-			std::cout << sp11000.longestSpan() << std::endl;
+			std::cout << "Shortest span: " << sp11000.shortestSpan() << std::endl;
+			std::cout << "Longest span: " << sp11000.longestSpan() << std::endl;
 		}
 		catch(const std::exception& e)
 		{
@@ -109,7 +126,7 @@ int main (void)
 		Span sp25000 = Span(25000);
 		try
 		{
-			sp25000.addIncrementingNumbers(0, 25000);
+			sp25000.addIncrementingNumbers(sp25000.getVector().begin(), sp25000.getVector().begin() + 25000, 0);
 		}
 		catch(const std::exception& e)
 		{
@@ -117,16 +134,14 @@ int main (void)
 		}
 		try
 		{
-			std::cout << sp25000.shortestSpan() << std::endl;
-			std::cout << sp25000.longestSpan() << std::endl;
+			std::cout << "Shortest span: " << sp25000.shortestSpan() << std::endl;
+			std::cout << "Longest span: " << sp25000.longestSpan() << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << std::endl;
 		}
 	}
-
-	atexit(testLeaks);
 	
 	return (0);
 }

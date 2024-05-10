@@ -4,26 +4,24 @@
 
 const char* Span::IndexOutOfRangeException::what() const throw()
 {
-	return ("Exception: Span already filled");
+	return ("Exception: Span is full");
 }
 
 const char* Span::TooSmallException::what() const throw()
 {
-	return ("Exception: Span too smal");
+	return ("Exception: Span too small to execute this function");
 }
 
 Span::Span(void)
 {
-	this->_vector.resize(0);
-	this->_index = 0;
 	std::cout << "Default constructor called on Span" << std::endl;
+	this->_vector.reserve(0);
 }
 
 Span::Span(unsigned int N)
 {
-	this->_vector.resize(N);
-	this->_index = 0;
 	std::cout << "Parametric constructor called on Span" << std::endl;
+	this->_vector.reserve(N);
 }
 
 Span::Span(const Span &src)
@@ -36,7 +34,6 @@ Span& Span::operator=(const Span &src)
 {
 	std::cout << "Copy assignment operator called on Span" << std::endl;
 	this->_vector = src._vector;
-	this->_index = src._index;
 	return (*this);
 }
 
@@ -47,23 +44,22 @@ Span::~Span(void)
 
 void	Span::addNumber(int n)
 {
-	if (this->_index >= this->_vector.size())
+	if (this->_vector.size() == this->_vector.capacity())
 		throw IndexOutOfRangeException();
-	this->_vector.at(this->_index) = n;
-	this->_index++;
+	this->_vector.push_back(n);
 }
 
 int		Span::shortestSpan(void)
 {
-	unsigned int	shortestDist =  4294967295;
-	std::vector<int> copy = this->_vector;
+	unsigned int 		shortestDist =  4294967295;
+	std::vector<int> 	copy = this->_vector;
 
 	if (this->_vector.size() < 2)
 		throw TooSmallException();
 	std::sort(copy.begin(), copy.end());
-	for (unsigned long i = 0; i < copy.size() - 1; i++)
+	for (std::vector<int>::size_type i = 0; i < copy.size() - 1; i++)
 	{
-		if ((unsigned int)(copy.at(i + 1) - copy.at(i)) < shortestDist)
+		if (static_cast<unsigned int>(copy.at(i + 1) - copy.at(i)) < shortestDist)
 			shortestDist = copy.at(i + 1) - copy.at(i);
 	}
 	copy.clear();
@@ -73,28 +69,26 @@ int		Span::shortestSpan(void)
 int		Span::longestSpan(void)
 {
 	std::vector<int> copy = this->_vector;
-	int	dist;
 
 	if (this->_vector.size() < 2)
 		throw TooSmallException();
 	std::sort(copy.begin(), copy.end());
-	dist = copy.back() - copy.front();
+	int dist = copy.back() - copy.front();
 	copy.clear();
 	return (dist);
 }
 
-void 	Span::addManySameNumbers(int amount, int value)
+const std::vector<int> &Span::getVector(void) const
 {
-	for (int i = 0; i < amount; i++)
-	{
-		this->addNumber(value);
-	}
+	return (this->_vector);
 }
 
-void	Span::addIncrementingNumbers(int start, int end)
+void	Span::addIncrementingNumbers(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end, int startNumber)
 {
-	for (int i = start; i < end; i++)
+	while(start != end)
 	{
-		this->addNumber(i);
+		addNumber(startNumber);
+		start++;
+		startNumber++;
 	}
 }
