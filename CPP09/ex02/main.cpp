@@ -5,8 +5,11 @@
 #include <vector>
 #include <stdio.h>
 #include <cstdlib>
+#include <locale>
+#include <ctime>
+#include <chrono>
 
-int	positiveSequence(int argc, char **argv)
+void	checkPositiveSequence(int argc, char **argv)
 {
 	int i = 1;
 
@@ -17,42 +20,41 @@ int	positiveSequence(int argc, char **argv)
 		{
 			if (!isdigit(argv[i][j]) && argv[i][j] != ' ')
 			{
-				std::cout << argv[i];
-				return (0);
+				throw PmergeMe::NotAPositiveIntegerException();
 			}
 			j++;
 		}
 		i++;
 	}
-	return (1);
-}
-
-int	errorReturn(std::string message, int returnValue)
-{
-	std::cout << "Error: " << message << std::endl;
-	return (returnValue);
 }
 
 int main (int argc, char **argv)
 {
 	PmergeMe pmergeMe;
 
-	if (argc < 2)
-		return (errorReturn("not enough arguments", 1));
-	if (!positiveSequence(argc, argv))
-		return (errorReturn("input must be positive integers only", 1));
 	try {
+		if (argc < 2)
+			throw PmergeMe::NotEnoughArgumentsException();
+		checkPositiveSequence(argc, argv);
 		pmergeMe.fillContainers(argc, argv);
+		pmergeMe.start();
+	    std::chrono::high_resolution_clock::time_point begin = std::chrono::high_resolution_clock::now();
+		pmergeMe.sortVector(2);
+   		std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
+		std::chrono::high_resolution_clock::time_point begin2 = std::chrono::high_resolution_clock::now();
+		pmergeMe.sortDeque(2);
+		std::chrono::high_resolution_clock::time_point end2 = std::chrono::high_resolution_clock::now();
+		pmergeMe.finish();
+    	std::chrono::microseconds elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+    	std::chrono::microseconds elapsed2 = std::chrono::duration_cast<std::chrono::microseconds>(end2 - begin2);
+		std::cout << "Time to process a range of " << pmergeMe.getSize() << " elements with std::vector : " << elapsed.count() <<" us" << std::endl;
+		std::cout << "Time to process a range of " << pmergeMe.getSize() << " elements with std::deque : " << elapsed2.count() <<" us" << std::endl;
+		pmergeMe.test();
 	}
 	catch (const std::exception& e) {
 		std::cout << e.what() << std::endl;
 		return (EXIT_FAILURE);
 	}
-	//todo: check for doubles
-	pmergeMe.start();
-	pmergeMe.sortVector(2);
-	pmergeMe.sortDeque(2);
-	pmergeMe.finish();
-	// pmergeMe.test();
+
 	return (EXIT_SUCCESS);
 }
