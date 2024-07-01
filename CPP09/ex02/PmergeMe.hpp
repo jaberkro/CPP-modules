@@ -50,7 +50,8 @@ class PmergeMe
 		void	movePair(T &t, size_t from, size_t to, size_t range);
 		
 		template<typename T>
-		void	sortSmallestInPairs(T &t, size_t pairSize);
+		void	sortSmallestOfPairs(T &t, size_t pairSize);
+		size_t	findNextIndexToSort(size_t toSortIndex, size_t pairSize, size_t pairIndex, size_t lastJacobsthal);
 
 		template<typename T>
 		size_t	findCorrectLocation(T &t, size_t toSortIndex, size_t pairSize, size_t min, size_t max);

@@ -106,12 +106,12 @@ void	PmergeMe::parseArgument(std::string s)
 			try 
 			{
 				input = stol(newInt);
-				storeInput(input);
 			}
 			catch (const std::exception& e) 
 			{
 				throw PmergeMe::NotAPositiveIntegerException();
 			}
+			storeInput(input);
 		}
 	}
 }
@@ -234,8 +234,17 @@ void PmergeMe::placeStraggler(T &t, size_t pairSize)
 	}
 }
 
+size_t PmergeMe::findNextIndexToSort(size_t toSortIndex, size_t pairSize, size_t pairIndex, size_t lastJacobsthal)
+{
+	while (pairIndex != lastJacobsthal && this->_sorted.at(toSortIndex) == true)
+	{
+		toSortIndex -= pairSize / 2;
+	}
+	return(toSortIndex);
+}
+
 template <typename T>
-void PmergeMe::sortSmallestInPairs(T &t, size_t pairSize) 
+void PmergeMe::sortSmallestOfPairs(T &t, size_t pairSize) 
 {
 	size_t	lastJacobsthal = 0;
 	size_t	jacobsthalIndex = 1;
@@ -250,23 +259,20 @@ void PmergeMe::sortSmallestInPairs(T &t, size_t pairSize)
 	{
 		movePair(t, toSortIndex, findCorrectLocation(t, toSortIndex, pairSize, 0, toSortIndex - pairSize / 2), pairSize/2);
 		pairIndex--;
-		while (pairIndex != lastJacobsthal && this->_sorted.at(toSortIndex) == true)
-		{
-			toSortIndex -= pairSize / 2;
-		}
+		toSortIndex = findNextIndexToSort(toSortIndex, pairSize, pairIndex, lastJacobsthal);
 		if (pairIndex == lastJacobsthal)
 		{
 			lastJacobsthal = this->_jacobsthalVector.at(jacobsthalIndex);
 			jacobsthalIndex++;		
 			pairIndex = this->_jacobsthalVector.at(jacobsthalIndex);
 			toSortIndex = pairIndex * pairSize - pairSize / 2;
-			
-			while (pairIndex > this->_jacobsthalVector.at(jacobsthalIndex - 1) && toSortIndex > t.size() - t.size() % pairSize - 1)
+
+			while (pairIndex > lastJacobsthal && toSortIndex > t.size() - t.size() % pairSize - 1)
 			{
 				pairIndex--;
 				toSortIndex -= pairSize;
 			}
-			if (pairIndex == this->_jacobsthalVector.at(jacobsthalIndex - 1))
+			if (pairIndex == lastJacobsthal)
 				break;
 		}
 	}
@@ -297,9 +303,7 @@ void	PmergeMe::sortVector(size_t pairSize)
 		return ;
 	swapPairs(this->_vector, pairSize);
 	sortVector(pairSize * 2);
-	sortSmallestInPairs(this->_vector, pairSize);
-	for(size_t i = 0; i < this->_sorted.size(); i++)
-		this->_sorted.at(i) = false;
+	sortSmallestOfPairs(this->_vector, pairSize);
 }
 
 void	PmergeMe::sortDeque(size_t pairSize)
@@ -308,7 +312,7 @@ void	PmergeMe::sortDeque(size_t pairSize)
 		return ;
 	swapPairs(this->_deque, pairSize);
 	sortDeque(pairSize * 2);
-	sortSmallestInPairs(this->_deque, pairSize);
+	sortSmallestOfPairs(this->_deque, pairSize);
 }
 
 void PmergeMe::test(void)
