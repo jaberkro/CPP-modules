@@ -27,26 +27,24 @@ class PmergeMe
 				virtual const char* what() const throw();
 		};
 
-		int		fillContainers(int argc, char **argv);
-		void	start();
+		void	prepareContainers(int argc, char **argv);
 		void	sortVector(size_t pairSize);
+		void	setSortedFalse(void);
 		void	sortDeque(size_t pairSize);
-		void	finish();
 		void	show();
-		void	test();
 		int		getSize();
+		void	test();
 
 	private:
 		PmergeMe(const PmergeMe &src);
 		PmergeMe& operator=(const PmergeMe &src);
 
-		template <typename T>
-		void	show(T &t);
+		void	parseArgument(std::string s);
+		void	storeInput(long input);
+		void	createJacobsthal(void);
 
 		template<typename T>
 		void	swapPairs(T &t, size_t pairSize);
-
-		void	createJacobsthal(void);
 
 		template <typename T>
 		void	movePair(T &t, size_t from, size_t to, size_t range);
@@ -57,6 +55,9 @@ class PmergeMe
 		template<typename T>
 		size_t	findCorrectLocation(T &t, size_t toSortIndex, size_t pairSize, size_t min, size_t max);
 		size_t	findMiddle(size_t minIndex, size_t maxIndex);
+
+		template<typename T>
+		void	placeStraggler(T &t, size_t pairSize);
 
 		std::deque<int>		_deque;
 		std::vector<int>	_vector;

@@ -22,6 +22,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &src)
 	this->_deque = src._deque;
 	this->_vector = src._vector;
 	this->_sorted = src._sorted;
+	this->_jacobsthalVector = src._jacobsthalVector;
 	return (*this);
 }
 
@@ -45,61 +46,99 @@ const char* PmergeMe::NotEnoughArgumentsException::what() const throw()
 	return ("Exception: Not enough arguments");
 }
 
-void print(int i) 
+void	PmergeMe::setSortedFalse(void)
 {
-	std::cout << i << " ";
+	for (size_t i = 0; i < this->_vector.size(); i++)
+	{
+		if (this->_sorted.size() < this->_vector.size())
+			this->_sorted.push_back(false);
+		else
+			this->_sorted.at(i) = false;
+	}
 }
 
-int PmergeMe::fillContainers(int argc, char **argv)
+static void	checkPositiveSequence(int argc, char **argv)
 {
-	long	input;
-	int		i = 1;
+	int i = 1;
 
 	while (i < argc)
 	{
-		size_t j = 0;
+		int	j = 0;
+		while (argv[i][j])
+		{
+			if (!isdigit(argv[i][j]) && argv[i][j] != ' ')
+			{
+				throw PmergeMe::NotAPositiveIntegerException();
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	PmergeMe::storeInput(long input)
+{
+	if (input >= 0 && input <= 2147483647)
+	{
+		if (std::find(this->_vector.begin(), this->_vector.end(), input) != this->_vector.end())
+			throw PmergeMe::DuplicateInputException();
+		this->_vector.push_back(static_cast<int>(input));
+		this->_deque.push_back(static_cast<int>(input));
+	}
+	else
+		throw PmergeMe::NotAPositiveIntegerException();
+}
+
+void	PmergeMe::parseArgument(std::string s)
+{
+	long	input;
+		
+	for (size_t i  = 0; i < s.length(); i++)
+	{
+		std::string newInt = "";
+		while (i < s.length() && s.at(i) != ' ')
+		{
+			newInt += s.at(i);
+			i++;
+		}
+		if (newInt.length() > 0)
+		{
+			try 
+			{
+				input = stol(newInt);
+				storeInput(input);
+			}
+			catch (const std::exception& e) 
+			{
+				throw PmergeMe::NotAPositiveIntegerException();
+			}
+		}
+	}
+}
+
+void PmergeMe::prepareContainers(int argc, char **argv)
+{
+	int		i = 1;
+
+	if (argc < 2)
+		throw PmergeMe::NotEnoughArgumentsException();
+	checkPositiveSequence(argc, argv);
+	while (i < argc)
+	{
 		std::string s = argv[i];
 		if (s.length() == 0)
 		{
 			i++;
 			continue;
 		}
-		while (j < s.length())
-		{
-			std::string newInt = "";
-			while (j < s.length() && s.at(j) != ' ')
-			{
-				newInt += s.at(j);
-				j++;
-			}
-			if (newInt.length() > 0)
-			{
-				try {
-					input = stol(newInt);
-				}
-				catch (const std::exception& e) {
-					throw PmergeMe::NotAPositiveIntegerException();
-				}
-				if (input >= 0 && input <= 2147483647)
-				{
-					if (std::find(this->_vector.begin(), this->_vector.end(), input) != this->_vector.end())
-						throw PmergeMe::DuplicateInputException();
-					this->_vector.push_back(static_cast<int>(input));
-					this->_deque.push_back(static_cast<int>(input));
-					this->_sorted.push_back(false);
-				}
-				else
-					return (0);
-			}
-			j++;
-		}
+		parseArgument(s);
 		i++;
 	}
 	if (this->_vector.size() == 0) {
 		throw PmergeMe::NotEnoughArgumentsException();
 	}
 	createJacobsthal();
-	return (1);
+	setSortedFalse();
 }
 
 void	PmergeMe::createJacobsthal()
@@ -107,6 +146,7 @@ void	PmergeMe::createJacobsthal()
 	size_t first = 0;
 	size_t second = 1;
 	size_t index = 0;
+
 	this->_jacobsthalVector.push_back(1);
 	while (index < this->_vector.size())
 	{
@@ -119,29 +159,9 @@ void	PmergeMe::createJacobsthal()
 	this->_jacobsthalVector.push_back(first * 2 + second);
 } 
 
-void	PmergeMe::start() 
+static void print(int i) 
 {
-	std::cout << "Before: ";
-	for_each(this->_vector.begin(), this->_vector.end(), print);
-	std::cout << std::endl;
-}
-
-void	PmergeMe::finish()
-{
-	std::cout << "After: ";
-	for_each(this->_vector.begin(), this->_vector.end(), print);
-	std::cout << std::endl;
-}
-
-template <typename T>
-void	PmergeMe::show(T &t)
-{
-	std::cout << "Sorted: ";
-	for_each(this->_sorted.begin(), this->_sorted.end(), print);
-	std::cout << std::endl;
-	std::cout << "After:  ";
-	for_each(t.begin(), t.end(), print);
-	std::cout << std::endl;
+	std::cout << i << " ";
 }
 
 void	PmergeMe::show()
@@ -153,7 +173,6 @@ void	PmergeMe::show()
 template <typename T>
 void	PmergeMe::movePair(T &t, size_t from, size_t to, size_t range)
 {
-	// std::cout << "Moving \033[1;35m" << t.at(from) << "\033[0m from index " << from << " to index " << to << std::endl;
 	T tmpT;
 	std::vector<bool> tmpBool;
 
@@ -178,7 +197,6 @@ size_t PmergeMe::findMiddle(size_t minIndex, size_t maxIndex)
 			options++;
 	}
 	options /= 2;
-	// std::cout << "options: " << options << ", ";
 	while (options > 0)
 	{
 		index++;
@@ -186,7 +204,6 @@ size_t PmergeMe::findMiddle(size_t minIndex, size_t maxIndex)
 			index++;
 		options--;
 	}
-	// std::cout << "Min: " << minIndex << ", max: " << maxIndex << ", middle: " << index << std::endl;
 	return (index);
 }
 
@@ -194,7 +211,6 @@ template <typename T>
 size_t PmergeMe::findCorrectLocation(T &t, size_t toSortIndex, size_t pairSize, size_t min, size_t max)
 {
 	size_t middle = findMiddle(min, max);
-	// 	std::cout << "to sort: " << t.at(toSortIndex) << ", min: " << min << ", middle: " << middle << ", max: " << max << std::endl;
 	if (middle == max && t.at(toSortIndex) < t.at(min))
 		return(min);
 	else if (middle == max)
@@ -202,15 +218,20 @@ size_t PmergeMe::findCorrectLocation(T &t, size_t toSortIndex, size_t pairSize, 
 	else if (middle == min)
 		return (min);
 	if (t.at(toSortIndex) > t.at(middle))
-	{
-		// std::cout << "Higher!" << std::endl;
 		return findCorrectLocation(t, toSortIndex, pairSize, middle, max);
-	}	
 	else
-	{
-		// std::cout << "Lower!" << std::endl;
 		return findCorrectLocation(t, toSortIndex, pairSize, min, middle);
-	}	
+}
+
+template <typename T>
+void PmergeMe::placeStraggler(T &t, size_t pairSize) 
+{
+	size_t stragglerSize = t.size() % pairSize;
+	if (stragglerSize >= pairSize / 2)
+	{
+		size_t stragglerStart = t.size() - stragglerSize;
+		movePair(t, stragglerStart, findCorrectLocation(t, stragglerStart, pairSize, 0, stragglerStart), pairSize / 2);
+	}
 }
 
 template <typename T>
@@ -220,45 +241,36 @@ void PmergeMe::sortSmallestInPairs(T &t, size_t pairSize)
 	size_t	jacobsthalIndex = 1;
 	size_t	pairIndex = 1;
 	size_t	toSortIndex = pairSize / 2;
+
 	for (size_t i = 0; i < t.size(); i += pairSize)
 	{
 		this->_sorted.at(i) = true;
 	}
 	while (toSortIndex < t.size() - t.size() % pairSize)
 	{
-		// std::cout << "pairIndex: " << pairIndex << ", lastJacobsthal: " << lastJacobsthal << ", toSortIndex: " << toSortIndex << std::endl;
 		movePair(t, toSortIndex, findCorrectLocation(t, toSortIndex, pairSize, 0, toSortIndex - pairSize / 2), pairSize/2);
 		pairIndex--;
 		while (pairIndex != lastJacobsthal && this->_sorted.at(toSortIndex) == true)
 		{
 			toSortIndex -= pairSize / 2;
-			// std::cout << " lowering index to: " << toSortIndex;
 		}
-		// std::cout << std::endl;
 		if (pairIndex == lastJacobsthal)
 		{
-			// std::cout << "moving up the jacobsthal number" << std::endl;
 			lastJacobsthal = this->_jacobsthalVector.at(jacobsthalIndex);
 			jacobsthalIndex++;		
 			pairIndex = this->_jacobsthalVector.at(jacobsthalIndex);
 			toSortIndex = pairIndex * pairSize - pairSize / 2;
 			
-			while (pairIndex > lastJacobsthal && toSortIndex > t.size() - t.size() % pairSize - 1)
+			while (pairIndex > this->_jacobsthalVector.at(jacobsthalIndex - 1) && toSortIndex > t.size() - t.size() % pairSize - 1)
 			{
 				pairIndex--;
 				toSortIndex -= pairSize;
 			}
-			if (pairIndex == lastJacobsthal)
+			if (pairIndex == this->_jacobsthalVector.at(jacobsthalIndex - 1))
 				break;
 		}
-	} 
-	size_t stragglerSize = t.size() % pairSize;
-	if (stragglerSize >= pairSize / 2)
-	{
-		size_t stragglerStart = t.size() - stragglerSize;
-		// std::cout << "Straggler! " << stragglerStart <<std::endl;
-		movePair(t, stragglerStart, findCorrectLocation(t, stragglerStart, pairSize, 0, stragglerStart), pairSize / 2);
 	}
+	placeStraggler(t, pairSize);
 }
 
 template <typename T>
@@ -286,16 +298,14 @@ void	PmergeMe::sortVector(size_t pairSize)
 	swapPairs(this->_vector, pairSize);
 	sortVector(pairSize * 2);
 	sortSmallestInPairs(this->_vector, pairSize);
-	for(size_t i = 0; i < this->_sorted.size(); i++) //todo: move to main / own function
+	for(size_t i = 0; i < this->_sorted.size(); i++)
 		this->_sorted.at(i) = false;
 }
 
 void	PmergeMe::sortDeque(size_t pairSize)
 {		
 	if (pairSize > this->_deque.size())
-	{
 		return ;
-	}
 	swapPairs(this->_deque, pairSize);
 	sortDeque(pairSize * 2);
 	sortSmallestInPairs(this->_deque, pairSize);
