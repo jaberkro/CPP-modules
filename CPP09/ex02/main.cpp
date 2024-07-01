@@ -25,8 +25,8 @@ int main (int argc, char **argv)
 
     	std::chrono::microseconds elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
     	std::chrono::microseconds elapsed2 = std::chrono::duration_cast<std::chrono::microseconds>(end2 - begin2);
-		std::cout << "Time to process a range of " << pmergeMe.getSize() << " elements with std::vector : " << elapsed.count() <<" microseconds" << std::endl;
-		std::cout << "Time to process a range of " << pmergeMe.getSize() << " elements with std::deque : " << elapsed2.count() <<" microseconds" << std::endl;
+		std::cout << "Time to process a range of " << pmergeMe.getSize() << " elements with std::vector : " << elapsed.count() <<" us" << std::endl;
+		std::cout << "Time to process a range of " << pmergeMe.getSize() << " elements with std::deque : " << elapsed2.count() <<" us" << std::endl;
 		
 		// pmergeMe.test();
 	}
