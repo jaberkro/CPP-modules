@@ -238,21 +238,30 @@ void	processFile(std::ifstream &userFile)
 
 int main (int argc, char **argv)
 {
-	std::ifstream userFile;
+	std::ifstream	userFile;
+	BitcoinExchange	btc;
 
 	atexit(leakCheck);
-	if (argc != 2)
-	{
-		std::cout << "Error: could not open file." << std::endl;
-		return (1);
+	try {
+		if (argc != 2)
+		{
+			throw BitcoinExchange::IncorrectUsageException();
+		}
+		btc.setOriginalDatabase("data.csv");
+		btc.initDatabase();
+		btc.openFile(argv[1]);
+		userFile.open(argv[1]);
+		if (!userFile.is_open())
+		{
+			throw BitcoinExchange::NoDatabaseException();
+		}
+		processFile(userFile);
+		userFile.close();
 	}
-	userFile.open(argv[1]);
-	if (!userFile.is_open())
+	catch(const std::exception& e)
 	{
-		std::cout << "Error: could not open file." << std::endl;
-		return (1);
+		std::cout << e.what() << std::endl;
+		return (EXIT_FAILURE);
 	}
-	processFile(userFile);
-	userFile.close();
-	return (0);
+	return (EXIT_SUCCESS);
 }
