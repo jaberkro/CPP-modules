@@ -2,78 +2,79 @@
 #include <iostream>
 #include <fstream>
 
-BitcoinExchange::BitcoinExchange(void)
+BitcoinExchange::BitcoinExchange(void): _startDate("0000-01-01")
 {
-	std::cout << "Default constructor called on BitcoinExchange" << std::endl;
+	// std::cout << "Default constructor called on BitcoinExchange" << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &src)
 {
-	std::cout << "Copy constructor called on BitcoinExchange" << std::endl;
+	// std::cout << "Copy constructor called on BitcoinExchange" << std::endl;
 	*this = src;
 }
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &src)
 {
-	std::cout << "Copy assignment operator called on BitcoinExchange" << std::endl;
-	this->_map = src._map;
-	this->_originalDatabase = src._originalDatabase;
+	// std::cout << "Copy assignment operator called on BitcoinExchange" << std::endl;
+	this->_originalDatabaseName = src._originalDatabaseName;
+	this->_providedDatabaseName = src._providedDatabaseName;
+	this->_startDate = src._startDate;
+	this->_exchangeRateMap = src._exchangeRateMap;
 	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange(void)
 {
-	std::cout << "Destructor called on BitcoinExchange" << std::endl;
+	// std::cout << "Destructor called on BitcoinExchange" << std::endl;
 }
 
-const char* BitcoinExchange::NoOriginalDatabaseException::what() const throw()
+const char* BitcoinExchange::BadOriginalDatabaseException::what() const throw()
 {
-	return ("Error: could not open original database file");
+	return ("Error: could not open or parse original database file");
 }
 
-const char* BitcoinExchange::NoUserDatabaseException::what() const throw()
+const char* BitcoinExchange::NoProvidedDatabaseException::what() const throw()
 {
-	return ("Error: could not open provided database file" + name);
+	return ("Error: could not open provided database file");
 }
 
 const char* BitcoinExchange::IncorrectUsageException::what() const throw()
 {
-
-	return ("Usage: ./btc <yourDatabaseName");
+	return ("Usage: ./btc <yourDatabaseName>");
 }
 
-void BitcoinExchange::initDatabase(void){
-	std::ifstream	dataFile;
-	std::string		line;
-
-	dataFile.open(this->_originalDatabase);
-	if (!dataFile.is_open())
-	{
-		throw BitcoinExchange::NoDatabaseException();
-	}
-	std::getline(dataFile, line);
-	while (std::getline(dataFile, line))
-	{
-		try
-		{
-			if (line.size() > 11)
-				this->_map[line.substr(0, 10)] = std::stof(line.substr(11));
-		}
-		catch(const std::exception& e)
-		{
-			dataFile.close();
-			throw e;
-		}
-	}
-	dataFile.close();
-}
-
-const std::string & BitcoinExchange::getOriginalDatabase(void)
+const char* BitcoinExchange::BadEntryException::what() const throw() 
 {
-	return (this->_originalDatabase);
+;
+	return ("entry should be in the format '<date> | <value>'. Example: '2009-12-23 | 1.2'");
 }
 
-void BitcoinExchange::setOriginalDatabase(std::string originalDatabase)
+const char* BitcoinExchange::BadDateException::what() const throw()
 {
-	this->_originalDatabase = originalDatabase;
+	return ("date should be between 1900 and 2025");
+}
+
+const char* BitcoinExchange::BadValueException::what() const throw()
+{
+	return ("value should be a positive number between 0 and 1000");
+}
+
+const std::string & BitcoinExchange::getProvidedDatabaseName(void)
+{
+	return (this->_providedDatabaseName);
+}
+
+void BitcoinExchange::setProvidedDatabaseName(std::string providedDatabaseName)
+{
+	this->_providedDatabaseName = providedDatabaseName;
+}
+
+const std::string & BitcoinExchange::getOriginalDatabaseName(void)
+{
+	return (this->_originalDatabaseName);
+}
+
+void BitcoinExchange::setOriginalDatabaseName(std::string originalDatabase)
+{
+	this->_originalDatabaseName = originalDatabase;
 }

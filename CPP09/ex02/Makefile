@@ -1,4 +1,4 @@
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11 -pedantic
+CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRC = PmergeMe.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
