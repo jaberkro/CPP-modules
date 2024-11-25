@@ -20,6 +20,4 @@ class RPN
 		std::stack<double> _stack;
 };
 
-std::ostream& 	operator<<(std::ostream&out, const RPN &toPrint);
-
 #endif
